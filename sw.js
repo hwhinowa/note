@@ -1,5 +1,5 @@
 // 캐싱 스토리지에 저장될 파일 이름
-var CACHE_NAME = 'cache-v1';
+var CACHE_NAME = 'cache-v4';
 // 캐싱할 웹 자원(이미지, css 등)의 목록
 var filesToCache = [
     './index.html', // index.html에 대한 캐싱. 기본적으로 설정
@@ -48,7 +48,7 @@ self.addEventListener('fetch', function(event){
 
 // activate 활성화. 기존 캐쉬를 비우고 새로운 캐쉬를 추가할 때
 self.addEventListener('activate', function (event) {
-    var newCacheList = ['cache-v1'];
+    var newCacheList = ['cache-v4'];
 
     console.log('service worker activate');
     event.waitUntil(
