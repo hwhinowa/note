@@ -2,7 +2,7 @@
 var CACHE_NAME = 'cache-v4';
 // 캐싱할 웹 자원(이미지, css 등)의 목록
 var filesToCache = [
-    './index.html', // index.html에 대한 캐싱. 기본적으로 설정
+    './', // index.html에 대한 캐싱. 기본적으로 설정
     './manifest.json',
     './favicon.png',
     './css/app.css',
