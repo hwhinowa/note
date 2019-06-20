@@ -47,22 +47,22 @@ self.addEventListener('fetch', function(event){
 });
 
 // activate 활성화. 기존 캐쉬를 비우고 새로운 캐쉬를 추가할 때
-// self.addEventListener('activate', function (event) {
-//     var newCacheList = ['cache-v3'];
+self.addEventListener('activate', function (event) {
+    var newCacheList = ['cache-v1'];
 
-//     console.log('service worker activate');
-//     event.waitUntil(
-//         caches.keys().then(function (cacheNames) {
-//             return Promise.all(
-//                 cacheList.map(function (cacheName) {
-//                     // 캐쉬 리스트 중 새로운 캐시 파일과 동일하지 않은 파일들은 삭제
-//                     if (newCacheList.indexOf(cacheName) === -1) {
-//                         return caches.delete(cacheName);
-//                     }
-//                 })
-//             );
-//         }).catch(function (error) {
-//             return console.log(error);
-//         })
-//     );
-// });
+    console.log('service worker activate');
+    event.waitUntil(
+        caches.keys().then(function (cacheNames) {
+            return Promise.all(
+                cacheList.map(function (cacheName) {
+                    // 캐쉬 리스트 중 새로운 캐시 파일과 동일하지 않은 파일들은 삭제
+                    if (newCacheList.indexOf(cacheName) === -1) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        }).catch(function (error) {
+            return console.log(error);
+        })
+    );
+});
