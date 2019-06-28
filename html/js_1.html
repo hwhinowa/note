@@ -1,72 +1,72 @@
 <div class="con_top">
-        <p>Javascript</p>
-        <p class='con_title'>기본형데이터와 참조형데이터</p>
-    </div>
-    <div class="con">
-        <article>
-            <p class="art_title">기본형과 참조형의 종류 및 차이점</p>
-            <p class="art_sub_title">JS의 두 가지 데이터 타입</p>
-            <p>
-                기본형(Primitive Type)<span></span>Number, String, Boolean, null, undefined, symbol(es6)
-                참조형(Reference Type)<span></span>Object - Array, Function, RegExp
-            </p>
-            <p class="highlight">
-                기본형 데이터는 값을 그대로 할당<span></span>참조형 데이터는 값이 저장된 주소값을 할당(참조)
-            </p>
-        </article>
+    <p>Javascript</p>
+    <p class='con_title'>기본형데이터와 참조형데이터</p>
+</div>
+<div class="con">
+    <article>
+        <p class="art_title">기본형과 참조형의 종류 및 차이점</p>
+        <p class="art_sub_title">JS의 두 가지 데이터 타입</p>
+        <p>
+            기본형(Primitive Type)<span></span>Number, String, Boolean, null, undefined, symbol(es6)
+            참조형(Reference Type)<span></span>Object - Array, Function, RegExp
+        </p>
+        <p class="summary">
+            기본형 데이터는 값을 그대로 할당<span></span>참조형 데이터는 값이 저장된 주소값을 할당(참조)
+        </p>
+    </article>
 
-        <article>
-            <p class="art_sub_title">기본형 데이터 작동 방식</p>
-            <code>
-                <span class='comment'>// 데이터 선언시 메모리의 어떤 한 주소에 공간을 확보해 변수명과 매칭</span>
-                <span class='variable'>var</span> a;
-                <span class='comment'>// 값 할당시 할당된 주소의 데이터 공간에 값 저장</span>
-                a = 10;
-                <span class='comment'>// 위 순서와 같고 선언과 값 할당을 한번에 하는 것</span>
-                <span class='variable'>var</span> b = 'abc';
-                <span class='comment'>// 위 순서와 같고 변수명 c 와 매칭된 주소에 b 가 담고있던 데이터를 저장</span>
-                <span class='variable'>var</span> c = b;
-                <span class='comment'>// 변수명 c 와 매칭된 주소를 '20'으로 덮어씌움. 이전에 있던 값인 'false'와 상관없는 값이 됨</span>
-                c = 20;
-            </code>
-        </article>
+    <article>
+        <p class="art_sub_title">기본형 데이터 작동 방식</p>
+        <code>
+            <span class='comment'>// 데이터 선언시 메모리의 어떤 한 주소에 공간을 확보해 변수명과 매칭</span>
+            <span class='variable'>var</span> a;
+            <span class='comment'>// 값 할당시 할당된 주소의 데이터 공간에 값 저장</span>
+            a = 10;
+            <span class='comment'>// 위 순서와 같고 선언과 값 할당을 한번에 하는 것</span>
+            <span class='variable'>var</span> b = 'abc';
+            <span class='comment'>// 위 순서와 같고 변수명 c 와 매칭된 주소에 b 가 담고있던 데이터를 저장</span>
+            <span class='variable'>var</span> c = b;
+            <span class='comment'>// 변수명 c 와 매칭된 주소를 '20'으로 덮어씌움. 이전에 있던 값인 'abc'와 상관없는 값이 됨</span>
+            c = 20;
+        </code>
+    </article>
 
-        <article>
-            <p class="art_sub_title">참조형 데이터 작동 방식</p>
-            <code>
-                <span class="variable">var</span> obj = { a = 1, b = 'b' }
-            </code>
-            <p>
-                메모리 상에서 위 참조형 데이터(여기서는 객체)가 담길 공간을 확보하고, 또 다른 주소에 a 라는 key 값의 value 가 담길 공간을 확보하고 그 주소와 a key를 매칭, b의 경우도 동일
-            </p>
-            <p>
-                이때, a 와 b property 와 매칭된 주소에 각각 key 값에 해당하는 value 값 저장.<span></span>
-                이 작업이 끝나면 맨 처음 매칭했던 주소인, 참조형 데이터가 담긴 주소를 하나의 주소에 데이터 값으로 할당
-            </p>
-            <p class="summary">참조형 데이터는 기본형 데이터의 집합</p>
-            <code>
-                <span class="variable">var</span> obj2 = obj;
-            </code>
-            <p>
-                한 주소에 변수 obj 가 가리키고 있는 최종 주소(위 작업에서 가장 마지막 주소)를 obj2 와 매칭한 주소에 할당
-            </p>
-            <p class="highlight"># 참조의 원리 : 객체가 저장되어있는 주소는 다른 곳에 있고 결과물인 주소만 가져옴</p>
-            <code>obj2.a = 10;</code>
-            <p>
-                obj 의 복제본인 obj2 의 property 값을 덮어씌움<span></span>
-                이 작업을 할 때, obj2 가 가리키고 있던 원래 객체 주소(obj 의 a property 값) 의 기본형 데이터 값을 덮어씌우기 때문에 obj.a 의 값도 10 으로 바뀜
-            </p>
-            <p class="highlight"># obj2 가 전혀 새로운 객체가 아니라 복제한 obj 와 같은 곳을 바라보는 객체이기 때문</p>
-            <p class="summary">Nested Object : 참조형 데이터 안에 또 다른 참조형 데이터가 있는 객체</p>
-            <code>
-                <span class="variable">var</span> obj3 = { a : [4, 5, 6] }
-            </code>
-            <p>
-                a property 의 value 에 대한 메모리 주소 할당 작업까지는 위와 같지만, a 의 value 또한 참조형 데이터이기 때문에 이 데이터 안에 있는 각각의 기본형 데이터들에 주소를 하나씩 할당해줌 (기본형 데이터의 집합)<span></span>
-                마찬가지로 이렇게 기본형 데이터의 집합으로 만들어준 최종 주소를
-                새 주소에 할당하고 새 주소와 obj3 를 매칭
-            </p>
-            <code>obj3.a = 'new';</code>
-            <p>a 의 value 값과 매칭시켰던 주소에 기본형 데이터인 'new' 를 덮어씌움으로써, 기존에 a 안에 있던 배열 value 들에 대한 링크가 사라짐(메모리 정리 대상이 됨)</p>
-        </article>
-    </div>
+    <article>
+        <p class="art_sub_title">참조형 데이터 작동 방식</p>
+        <code>
+            <span class="variable">var</span> obj = { a = 1, b = 'b' }
+        </code>
+        <p>
+            메모리 상에서 위 참조형 데이터(여기서는 객체)가 담길 공간을 확보하고, 또 다른 주소에 a 라는 key 값의 value 가 담길 공간을 확보하고 그 주소와 a key를 매칭, b의 경우도 동일
+        </p>
+        <p>
+            이때, a 와 b property 와 매칭된 주소에 각각 key 값에 해당하는 value 값 저장.<span></span>
+            이 작업이 끝나면 맨 처음 매칭했던 주소인, 참조형 데이터가 담긴 주소를 하나의 주소에 데이터 값으로 할당
+        </p>
+        <p class="highlight">즉, 참조형 데이터는 기본형 데이터의 집합</p>
+        <code>
+            <span class="variable">var</span> obj2 = obj;
+        </code>
+        <p>
+            한 주소에 변수 obj 가 가리키고 있는 최종 주소(위 작업에서 가장 마지막 주소)를 obj2 와 매칭한 주소에 할당
+        </p>
+        <p class="caption"># 참조의 원리 : 객체가 저장되어있는 주소는 다른 곳에 있고 결과물인 주소만 가져옴</p>
+        <code>obj2.a = 10;</code>
+        <p>
+            obj 의 복제본인 obj2 의 property 값을 덮어씌움<span></span>
+            이 작업을 할 때, obj2 가 가리키고 있던 원래 객체 주소(obj 의 a property 값) 의 기본형 데이터 값을 덮어씌우기 때문에 obj.a 의 값도 10 으로 바뀜
+        </p>
+        <p class='caption'># obj2 가 전혀 새로운 객체가 아니라 복제한 obj 와 같은 곳을 바라보는 객체이기 때문이다</p>
+        <p class="summary">Nested Object : 참조형 데이터 안에 또 다른 참조형 데이터가 있는 객체</p>
+        <code>
+            <span class="variable">var</span> obj3 = { a : [4, 5, 6] }
+        </code>
+        <p>
+            a property 의 value 에 대한 메모리 주소 할당 작업까지는 위와 같지만, a 의 value 또한 참조형 데이터이기 때문에 이 데이터 안에 있는 각각의 기본형 데이터들에 주소를 하나씩 할당해줌 (기본형 데이터의 집합)<span></span>
+            마찬가지로 이렇게 기본형 데이터의 집합으로 만들어준 최종 주소를
+            새 주소에 할당하고 새 주소와 obj3 를 매칭
+        </p>
+        <code>obj3.a = 'new';</code>
+        <p>a 의 value 값과 매칭시켰던 주소에 기본형 데이터인 'new' 를 덮어씌움으로써, 기존에 a 안에 있던 배열 value 들에 대한 링크가 사라짐(메모리 정리 대상이 됨)</p>
+    </article>
+</div>

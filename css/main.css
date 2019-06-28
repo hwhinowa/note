@@ -54,11 +54,14 @@ body{
 }
 body *{
 	box-sizing:border-box;
-	color:#333;
+    color:#333;
+    transition:all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 a{text-decoration:none;}
 button{
+    display:block;
     background:none;
+    border:none;
     cursor:pointer;
 }
 button:focus{outline:none;}
@@ -84,12 +87,14 @@ button:focus{outline:none;}
     font-size: 2.4rem;
     font-weight: 900;
     text-align: center;
-    padding:10rem 0 2rem;
-    background: url('../images/airplane.png') 50% 50% no-repeat;
+    padding:9rem 0 3rem;
+    background: url('../images/airplane.png') 50% 30% no-repeat;
     background-size: 6rem;
 }
-.category{padding:1rem 2rem;}
-.category p{
+.category{padding:0 2rem;}
+.category button{
+    display:none;
+    width: 100%;
     font-size: 1.8rem;
     letter-spacing: -1px;
     line-height: 150%;
@@ -97,14 +102,17 @@ button:focus{outline:none;}
     text-align: right;
     padding: 1rem 1rem 1rem 0;
 }
-.category p.title{
+.category button:hover{color:#555;}
+.category.active button{display:block;}
+.category button:nth-of-type(2){border-top: solid 1px #ddd;}
+.category button:last-child{padding:1rem 1rem 2rem 0;}
+.category button.title{
+    display:block;
     font-size: 2.4rem;
     color: #333;
     font-weight: 600;
     border-top: solid 1px #aaa;
-    border-bottom: solid 1px #ddd;
     padding: 1rem 2rem;
-    margin-bottom: 1rem;
     text-align: center;
 }
 
@@ -112,7 +120,7 @@ button:focus{outline:none;}
     float:right;
     width:80%;
     min-height:100vh;
-    padding: 4rem 2rem 3rem;
+    padding: 5rem 2rem 3rem;
 }
 .con_top{
     padding: 1rem 2rem;
@@ -129,10 +137,9 @@ button:focus{outline:none;}
     color: #333;
 }
 .con{
-    padding: 2.5rem 2rem 3rem;
+    padding:0 2rem 3rem;
     background: #fff;
 }
-.con article{}
 .con p{
     font-size: 1.6rem;
     color: #333;
@@ -150,17 +157,20 @@ button:focus{outline:none;}
     padding: 2rem 0 0.6rem;
 }
 .con p.highlight{
-    display: inline-block;
     padding: 0.8rem 1rem;
     margin: 0.5rem 0;
     background: #fffbc2;
 }
 .con p.summary{
+    /* display: inline-block; */
     font-weight: 900;
     color: #555;
     background: #e7e7e7;
     padding: 1.2rem 2rem;
     margin: 1rem 0;
+}
+.con .caption{
+    font-weight:900;
 }
 code{
     display:block;
@@ -182,7 +192,7 @@ code .variable{
 
 @media screen and (max-width:1000px){
     html{font-size:9px;}
-    .category{padding:1rem 0 1rem 2rem;}
+    /* .category{padding:1rem 0 1rem 2rem;} */
     .contents{padding:3.5rem 0 3rem;}
 }
 
