@@ -5,18 +5,12 @@ var filesToCache = [
     './', // index.html에 대한 캐싱. 기본적으로 설정
     './manifest.json',
     './favicon.png',
-    './css/app.css',
+    './css/main.css',
     './images/gauntlet.jpg',
     './images/hammer.png',
     './images/refresh.svg',
     './images/shield.png'
 ];
-
-// var CACHE_NAME = 'cache-v3';
-// var filesToCache = [
-//     '/',
-//     '/css/app.css'
-// ];
 
 // Service Worker 설치 (웹 자원 캐싱)
 // 서비스워커 파일에서는 self로 window에 접근

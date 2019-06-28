@@ -1,0 +1,259 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+@charset "utf-8";
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary, button
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {display: block;}
+body {line-height: 1;}
+ol, ul {list-style: none;}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* 추가 */
+html{
+	height:100%;
+	font-size:10px;
+}
+body{
+	position:relative;
+	height:100%;
+}
+body *{
+	box-sizing:border-box;
+	color:#333;
+}
+a{text-decoration:none;}
+button{
+    background:none;
+    cursor:pointer;
+}
+button:focus{outline:none;}
+.clear:after{
+    display:block;
+    content:'';
+    clear:both;
+}
+
+
+
+.wrap{
+    min-height:100vh;
+    background:#fff;
+}
+.menu{
+    float:left;
+    width:20%;
+    height:100%;
+    min-height:100vh;
+}
+.menu h1{
+    font-size: 2.4rem;
+    font-weight: 900;
+    text-align: center;
+    padding:10rem 0 2rem;
+    background: url('../images/airplane.png') 50% 50% no-repeat;
+    background-size: 6rem;
+}
+.category{padding:1rem 2rem;}
+.category p{
+    font-size: 1.8rem;
+    letter-spacing: -1px;
+    line-height: 150%;
+    color: #aaa;
+    text-align: right;
+    padding: 1rem 1rem 1rem 0;
+}
+.category p.title{
+    font-size: 2.4rem;
+    color: #333;
+    font-weight: 600;
+    border-top: solid 1px #aaa;
+    border-bottom: solid 1px #ddd;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.contents{
+    float:right;
+    width:80%;
+    min-height:100vh;
+    padding: 4rem 2rem 3rem;
+}
+.con_top{
+    padding: 1rem 2rem;
+    background: #fff;
+}
+.con_top p{
+    font-size: 2rem;
+    font-weight: 900;
+    color: #aaa;
+    line-height: 150%;
+}
+.con_top p.con_title{
+    font-size: 2.6rem;
+    color: #333;
+}
+.con{
+    padding: 2.5rem 2rem 3rem;
+    background: #fff;
+}
+.con article{}
+.con p{
+    font-size: 1.6rem;
+    color: #333;
+    line-height: 150%;
+}
+.con article p span {display: block;}
+.con p.art_title{
+    font-size: 2rem;
+    font-weight: 900;
+    color: #2dc6a8;
+}
+.con p.art_sub_title{
+    font-size: 1.8rem;
+    font-weight: 900;
+    padding: 2rem 0 0.6rem;
+}
+.con p.highlight{
+    display: inline-block;
+    padding: 0.8rem 1rem;
+    margin: 0.5rem 0;
+    background: #fffbc2;
+}
+.con p.summary{
+    font-weight: 900;
+    color: #555;
+    background: #e7e7e7;
+    padding: 1.2rem 2rem;
+    margin: 1rem 0;
+}
+code{
+    display:block;
+    font-size:1.4rem;
+    color:#fff;
+    line-height:150%;
+    padding:1rem;
+    margin:1rem 0;
+    border-radius:0.4rem;
+    background:#333;
+}
+code .comment{
+    display:block;
+    color:green;
+}
+code .variable{
+    color:skyblue;
+}
+
+@media screen and (max-width:1000px){
+    html{font-size:9px;}
+    .category{padding:1rem 0 1rem 2rem;}
+    .contents{padding:3.5rem 0 3rem;}
+}
+
+/* main, .gnb_wrap, .content_wrap{height:100%}
+.top{
+    position:absolute;
+    top:0;
+    width: 100%;
+    padding: 1.6rem 0;
+    background:#fff;
+}
+.top h1{
+    font-size: 2.4rem;
+    font-weight: 900;
+    text-align:center;
+}
+.gnb_wrap{
+    float:left;
+    width:50%;
+}
+.content_wrap{
+    float:right;
+    width:50%;
+}
+.gnb_wrap{
+    padding-top:20%;
+    background:#14296c;
+}
+.gnb_wrap > div:nth-of-type(1){
+    border-top:solid 1px #fff;
+}
+.gnb_1depth_box{
+    width: 60%;
+    padding: 2rem 0;
+    margin: 0 auto;
+    border-bottom: solid 1px #fff;
+}
+.gnb_1depth_box:last-child{
+    min-height:7.4rem;
+}
+.gnb_1depth_box button{
+    display: block;
+    width: 100%;
+    font-size: 3rem;
+    color: #fff;
+    background: transparent;
+    border: none;
+}
+.gnb_1depth_box.active{
+    padding:1rem 0;
+}
+.gnb_1depth_box.active button{}
+.gnb_1depth_box.active .gnb_2depth_box{
+    display:block;
+    float:left;
+    width:60%;
+}
+.gnb_2depth_box{
+    display:none;
+}
+.gnb_2depth_box li{}
+.gnb_2depth_box li a{
+    display:block;
+    font-size:2rem;
+    color:#fff;
+    text-align:center;
+    line-height:150%;
+}
+
+.content_wrap{
+    background:#1c3997;
+}
+.header_content{}
+.header_content h1{} */
