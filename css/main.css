@@ -58,6 +58,12 @@ body *{
     transition:all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 a{text-decoration:none;}
+ol{
+    list-style: decimal;
+    padding-left: 1.4rem;
+    font-size: 1.6rem;
+    line-height: 150%;
+}
 button{
     display:block;
     background:none;
@@ -77,6 +83,7 @@ button:focus{outline:none;}
     min-height:100vh;
     background:#fff;
 }
+.wrpa *{letter-spacing:-1px;}
 .menu{
     float:left;
     width:20%;
@@ -120,10 +127,10 @@ button:focus{outline:none;}
     float:right;
     width:80%;
     min-height:100vh;
-    padding: 5rem 2rem 3rem;
+    padding: 4rem 2rem 3rem;
 }
 .con_top{
-    padding: 1rem 2rem;
+    padding:0 2rem;
     background: #fff;
 }
 .con_top p{
@@ -150,6 +157,7 @@ button:focus{outline:none;}
     font-size: 2rem;
     font-weight: 900;
     color: #2dc6a8;
+    padding-top:3rem;
 }
 .con p.art_sub_title{
     font-size: 1.8rem;
@@ -157,7 +165,7 @@ button:focus{outline:none;}
     padding: 2rem 0 0.6rem;
 }
 .con p.highlight{
-    padding: 0.8rem 1rem;
+    padding:1rem 2rem;
     margin: 0.5rem 0;
     background: #fffbc2;
 }
@@ -177,18 +185,16 @@ code{
     font-size:1.4rem;
     color:#fff;
     line-height:150%;
-    padding:1rem;
     margin:1rem 0;
     border-radius:0.4rem;
     background:#333;
+    word-wrap:break-word;
+    word-break:keep-all;
+    white-space:pre-wrap;
 }
-code .comment{
-    display:block;
-    color:green;
-}
-code .variable{
-    color:skyblue;
-}
+code .comment{color:#008e00;}
+code .variable{color:#47c1f2;}
+code .function{color:#ee47d1;}
 
 @media screen and (max-width:1000px){
     html{font-size:9px;}
