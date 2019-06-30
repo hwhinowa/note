@@ -286,13 +286,16 @@ code .out{color:red; display:inline;}
 @media screen and (max-width:800px){
     .menu{
         float: none;
-        position: absolute;
+        position: fixed;
         top: 0;
         right: -50%;
+        overflow-y:scroll;
         width: 50%;
         background: #fff;
         border-right: solid 1px #efefef;
+        -ms-overflow-style:none;
     }
+    .menu::-webkit-scrollbar{display:none;}
     .menu.active{right:0;}
     .menu > div{background:#fff;}
     .mobile_menu{display:block;}
