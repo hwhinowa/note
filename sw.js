@@ -6,10 +6,24 @@ var filesToCache = [
     './manifest.json',
     './favicon.png',
     './css/main.css',
-    './images/gauntlet.jpg',
-    './images/hammer.png',
-    './images/refresh.svg',
-    './images/shield.png'
+    './images/airplane_192x.png',
+    './images/airplane_345x.png',
+    './html/js_1.html',
+    './html/js_2.html',
+    './html/js_3.html',
+    './html/js_4.html',
+    './html/react_1.html',
+    './html/react_2.html',
+    './html/react_3.html',
+    './html/react_4.html',
+    './html/react_5.html',
+    './html/react_6.html',
+    './html/react_7.html',
+    './html/react_8.html',
+    './html/react_9.html',
+    './html/pwa_1.html',
+    './html/pwa_2.html',
+    './html/pwa_3.html'
 ];
 
 // Service Worker 설치 (웹 자원 캐싱)

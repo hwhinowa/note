@@ -1,0 +1,169 @@
+<div class="con_top">
+    <p>Javascript</p>
+    <p class='con_title'>서비스워커</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">서비스 워커 개요, 오프라인 웹 시연</p>
+    <p>Service Worker는 PWA를 움직이게 하는 코어 기술</p>
+    <p class="art_sub_title">서비스 워커의 주요 특징</p>
+    <ul>
+        <li>Caching</li>
+        <li>Offline</li>
+        <li>Native Features</li>
+    </ul>
+
+    <p class="art_title">서비스 워커 정의, 자바스크립트와 워커의 차이점</p>
+    <p>서비스워커 : 브라우저와 서버 사이의 미들웨어(브라우저와 네이트크가 소통할 때 그 사이에서 중간역할을 함) 역할을 하는 스크립트 파일<span></span>PWA에서 가장 중요한 역할을 하고, Offline Experience와 Mobile & Web Push의 기반 기술</p>
+    <div class="summary">
+        <p class="caption">chrome://serviceworker-internals/</p>이 크롬설정 사이트에서는 돌아가고 있는 모든 서비스 워커를 확인할 수 있다<span></span>inspect 클릭시 서비스워커를 디버깅할 수 있는 개발자 도구가 표시된다 (네트워크 캐싱 등의 작업을 위한 창이기 때문에 윈도우 접근 불가)
+    </div>
+
+    <p class="art_title">서비스 워커 특징 8가지</p>
+    <ul>
+        <li>브라우저의 백그라운드에서 실행되며, 웹 페이지와 별개의 라이프 사이클을 가진다 (Javascript UI 쓰레드와 별도로 동작하는 또 다른 쓰레드)</li>
+        <li>네트워크 요청을 가로챌 수 있어 해당 자원에 대한 캐쉬 제공 또는 서버에 자원 요청<span></span>프로그래밍 가능한 네트워크 프록시<span></span>프록시 : 중개 서버(네트워크에서 또다른 네트워크를 연결할 때 중간 역할을 하는 서버)</li>
+        <li>브라우저 종속적(페이지가 종료되더라도 서비스워커가 종료되지 않는다. 브라우저가 꺼져야 같이 꺼짐)인 생명주기로 백그라운드 동기화 기능 제공<span></span>Push 알람의 진입점을 제공</li>
+        <li>Web & Mobile Push 수신이 가능하도록 Notification을 제공</li>
+        <li>navigator.serviceworkder로 접근</li>
+        <li>기존 javascript와 별개의 자체 스코프를 가진다<span></span>크롬 개발자 도구의 console과의 별개의 서비스워커 전용 console이 존재한다</li>
+        <li>DOM에 직접적으로 접근이 불가능 (postMessage() 이용)</li>
+        <li>사용하지 않을 때에는 자체적으로 종료, 필요시에 다시 시작(event-driven 방식)</li>
+    </ul>
+
+    <p class="art_title">서비스 워커 배경</p>
+    <p>기존에 이미 존재하던 기술들을 보완, 그리고 진화</p>
+    <p><span class="caption">AppCache</span> : 오프라인 경험을 제공하기 위한 캐시 제공, HTML 표준<span></span>복수 페이지 앱에서 오동작하거나, 파일 변화에 둔감한 캐싱 등의 문제가 있었음</p>
+    <p><span class="caption">Workers</span> : 특정 작업을 병렬 스크립트로 백그라운드에서 실행 및 처리하기 위한 수단, HTML 표준<span></span>js 실행시 화면과 관계 없는 작업들을 백그라운드에서 실행해 화면을 빠르게 그려내는 것이 워커의 목적<span></span>서비스워커에는 두 종류가 있다</p>
+    <div class="summary">
+        <ul>
+            <li>Dedicated Workers : 페이지 종속적</li>
+            <li>
+                <span class="caption">Shared Workers : 브라우징(브라우저) 컨텍스트</span><span></span>Shared Worker는 Javascript UI 쓰레드와 별개의 쓰레드를 가진다 (Global script scope)<span></span>페이지에 비종속적(페이지 라이프 사이클과도 별개)<span></span>직접적인 DOM 접근 불가
+            </li>
+        </ul>
+    </div>
+    <p>그래서 Service Workder가 등장한다</p>
+
+    <p class="art_title">서비스 워커 등록과 Promise 이해</p>
+    <p class="art_sub_title">서비스 워커 등록</p>
+    <p>브라우저에 존재 유무를 확인한 후 register() 사용</p>
+    <code>
+    if('serviceWorkder' in navigator){
+        <span class='comment'>// 간단한 실행</span>
+        navigator.serviceWorker.register('/service-worker.js');
+        <span class='comment'>// Promise 이용</span>
+        navigator.serviceWorker.register('/service-worker.js').then(<span class="function">function</span>(reg){
+            <span class='comment'>// 성공</span>
+            console.log('Okay it worked!', reg);
+        }).catch(<span class="function">function</span>(err){
+            <span class='comment'>// 실패</span>
+            console.log('Oops, an error occured', err);
+        })
+    }
+    </code>
+    <p>기존 js 콜백함수의 복합적인 문제를 해결하기 위해 Promise가 등장했다</p>
+
+    <p class="art_title">서비스 워커 설치 - install 이벤트와 self</p>
+    <p>서비스워커 파일을 브라우저에 '등록' (register())<span></span>서비스워커 등록 후 캐싱 '설치' (install(), 캐시 파일들을 브라우저 캐시 스토리지에 추가</p>
+    <p class="caption">register()에서 등록한 스크립트 파일에서 install() 호출</p>
+    <code>
+    self.addEventListener('install', <span class="function">function</span>(event){
+        <span class='comment'>// 캐쉬 등록 또는 기타 로직 수행</span>
+    });              
+    </code>
+    <p class="art_sub_title">캐시 정의</p>
+    <code>
+    <span class='comment'>// 캐쉬를 담을 파일명 정의</span>
+    <span class="variable">var</span> CACHE_NAME = 'cache-v1';
+    <span class='comment'>// 캐쉬할 웹 자원들 정의</span>
+    <span class="variable">var</span> filesToCache = [
+        '/',
+        '/js/app.js',
+        '/css/base.css'
+    ];
+    </code>
+    <p class="summary light">이전 서비스워커가 실행되고 있다면 [개발자도구 > Application] 에서 Unregister 누른 후 새로고침</p>
+    <p class="caption">준비상태 완성된 서비스워커 js 파일</p>
+    <code>
+    <span class="variable">var</span> CACHE_NAME = 'cache-v1';
+    <span class="variable">var</span> filesToCache = [
+        '/',
+        '/js/app.js',
+        '/css/base.css'
+    ];
+    
+    self.addEventListener('install', <span class="function">function</span>(event){
+        event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(<span class="function">function</span>(cache){
+            return cache.addAll(filesToCache);
+            })
+            .catch(<span class="function">function</span>(error){
+            return console.log(error);
+            })
+        );
+    });
+    </code>
+    <div class="summary"><p class="caption">서비스 워커 설치 - 파일 캐싱과 디버깅시 주의 사항</p>캐쉬할 파일 중 한 개라도 실패하면 전체 실패<span></span>이를 해결하기 위해 sw-toolbox 라이브러리 사용 가능</div>
+    <div class="summary"><p class="caption">서비스 워커 설치 - 파일 캐싱 에러 처리 요령</p>catch 처리를 해두어야 디버깅이 용이하다<span></span>catch 내에서 콘솔 찍을 때, return을 해주어야 한다<span></span>[개발자도구 > Application] 에서 'Update on reload' 체크해두면 디버깅시 쌓이는 서비스워커를 매번 unregister해주지 않아도 된다</div>
+
+    <p class="art_title">서비스 워커 네트워크 요청 - fetch 이벤트 구현 및 동작 확인</p>
+    <p><span class='caption block'>fetch 이벤트 : 서비스워커에서 네트워크 요청에 응답하는 이벤트</span>서비스워커 설치 후 캐쉬된 자원에 대한 네트워크 요청이 있을 때에는 캐쉬로 돌려준다</p>
+    <code>
+    self.addEventListener('fetch', <span class="function">function</span>(event){
+        event.respondWith(
+            caches.match(event.request).then(<span class="function">function</span>(response){
+                if(response){
+                    return response;
+                }
+                return fetch(event.request);
+            })
+        );
+    });
+    </code>
+    <p>respondWith() : fetch 이벤트의 응답(response)을 반환<span></span>match() : 해당 request에 상응하는 캐쉬가 있으면 찾아서 돌려주고 아니면 fetch()로 자원 획득</p>
+
+    <p class="art_title">서비스 워커 활성화 - activate 이벤트 설명</p>
+    <p><span class="caption block">서비스 워커 활성화 및 업데이트</span>새로운 서비스워커가 설치되면 활성화 단계로 넘어온다<span></span>이전에 사용하던 서비스워커와 이전 캐쉬는 모두 삭제하는 작업 진행</p>
+    <code>
+    self.addEventListener('activate', <span class="function">function</span>(event){
+        event.waitUntil(
+            caches.keys().then(<span class="function">function</span>(cacheNames){
+            return Promise.all(
+                    cacheList.map(<span class="function">function</span>(cacheName){
+                        if(newCacheList.indexOf(cacheName) === -1){
+                            return caches.delete(cacheName);
+                        }
+                    })
+                );
+            })
+        );
+    });
+    </code>
+
+    <p class="art_title">서비스 워커 라이프 사이클</p>
+    <p class="art_sub_title">서비스워커 흐름</p>
+    <ol>
+        <li>index.html에서 서비스워커 지원 여부 확인후 register API로 서비스워커 등록</li>
+        <li>서비스워커에서 캐쉬 선언하고 install event로 캐쉬 저장하고 추가</li>
+        <li>fetch event로 네트워크 요청 가로채기</li>
+        <li>서비스워커 파일이 업데이트됐을 때 캐쉬 업데이트를 위해 activate event 사용</li>
+    </ol>
+    <p class="art_sub_title">서비스 워커 라이프 사이클</p>
+    <ul>
+        <li>서비스워커와 웹 페이지는 별개의 생명주기</li>
+        <li>
+            서비스워커 등록 & 설치 & 활성화 과정을 보면,
+            <ol>
+                <li>웹페이지에서 서비스워커 스크립트 호출</li>
+                <li>브라우저 백그라운드에서 서비스워커 설치</li>
+                <li>설치 과정에서 정적 자원 캐싱 (Cache 실패시 Install도 실패)</li>
+                <li>설치 후 활성화. 네트워크 요청에 대한 가로채기 가능</li>
+            </ol>
+        </li>
+        <li>사용하지 않을 때는 휴지 상태. 필요시에만 해당 기능 수행</li>
+        <li>메모리 상태에 따라 자체적으로 종료하는 영리함</li>
+    </ul>
+</article>
+</div>

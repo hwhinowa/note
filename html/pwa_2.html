@@ -1,0 +1,133 @@
+<div class="con_top">
+    <p>Javascript</p>
+    <p class='con_title'>웹앱 매니페스트</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">웹앱 매니페스트 파일소개</p>
+    <p class="art_sub_title">Web App Manifest</p>
+    <p><span class='caption block'>install banner & App Icon</span>PWA 설치와 앱 구성정보가 담긴 Json 형식의 설정 파일(앱 아이콘, 화면 런쳐 방식 및 배경색, 시작 페이지 등을 설정)<span></span>PWA 주요 기술 중 하나</p>
+    <p class="art_sub_title">앱 관련 구성정보</p>
+    <ul>
+        <li><span class="caption">Start URL</span> : 웹 앱이 시작되는 지점</li>
+        <li><span class="caption">Launch Image</span> : 웹 앱 시작 화면</li>
+        <li><span class="caption">Display Type</span> : 웹 앱의 화면 형태</li>
+        <li><span class="caption">Display Orientation</span> : 웹 앱 화면 방향</li>
+        <li><span class="caption">App Icon</span> : 앱 아이콘 이미지와 크기</li>
+    </ul>
+    <code>
+    {
+        <span class='variable'>"short_name"</span> : "앱 아이콘 이름",
+        <span class='variable'>"name"</span> : "하단 설치 배너에 표기될 이름 & 앱에서 검색시 키워드 & 앱 시작화면에 나올 이름",
+        <span class='variable'>"icons"</span> : [
+            {
+            "src" : "dist/images/icons/icon-32x32.png",
+            "type" : "image/png",
+            "sizes" : "32x32"
+            },
+            {
+            "src" : "dist/images/icons/icon-192x192.png",
+            "type" : "image/png",
+            "sizes" : "192x192"
+            }
+        ],
+        <span class='variable'>"background_color"</span> : "#1E88E5:,
+        <span class='variable'>"start_url"</span> : "./"
+        <span class='variable'>"display"</span> : "standalone",
+        <span class='variable'>"orientation"</span> : "portrait"
+    }
+    </code>
+    <!-- <p class="summary">- 앱을 설치할 수 있는 이벤트와 구현 방법<span></span>- Web App Manifest 개발 시 주의할 점(Navigagion Scope. Deep link)</p> -->
+
+    <p class="art_title">웹앱 매니페스트 앱 아이콘, 런치 이미지</p>
+    <p>해당 웹 사이트가 모바일 화면에서 표시될 아이콘 이미지를 지정<span></span>icons src, type, sizes : 이미지 위치, 종류, 크기<span></span>app icon 미지정시 html 파일의 &lt;<span class="out">link</span> rel='icon'&gt; 태그 검색</p>
+    <div class="summary">
+        <span class="caption">Safari의 경우는 manifest 파일이 인식이 잘 안되기때문에 meta 태그로 추가해줘야 한다</span>
+    <code>
+    &lt;<span class="out">link</span> rel='apple-touch-icon' href=''&gt;
+    &lt;<span class="out">link</span> rel='apple-touch-icon' sizes='152x152' href='name.png'&gt;
+    &lt;<span class="out">link</span> rel='apple-touch-icon' sizes='' href=''&gt;
+    &lt;<span class="out">link</span> rel='apple-touch-icon' sizes='' href=''&gt;
+    </code>
+    </div>
+    <p class="art_sub_title">런치 이미지</p>
+    <p>
+        웹앱이 시작될 때 거치는 시작 화면을 설정 가능<span></span>모바일 앱의 시작과 동일한 느낌은 가져간다<span></span>화면의 조합 : 아이콘 + 배경색 + 아이콘 이름<span></span>런치 이미지의 아이콘은 icon에 지정한 이미지 중 128dp(192px)에 가장 가까운 크기의 이미지로 지정된다 (192px 크기의 이미지는 꼭 지정)
+    </p>
+
+    <p class="art_title">웹앱 매니페스트 시작 주소, 화면 형태</p>
+    <p class="art_sub_title">start_url</p>
+    <p>앱이 시작될 때 로딩될 페이지 위치를 지정하는 속성<span></span>GA(구글 애널리틱스) 분석이나 기타 목적으로 query string을 붙일 수 있다</p>
+    <code>
+    ex) "start_url" : "index.html?launcher=homescreen"
+    </code>
+    <p class="art_sub_title">display_type</p>
+    <p>웹앱 화면의 전체적인 모양을 정한다<span></span>웹앱이 모바일 앱의 느낌을 가져가도록 결정짓는 속성</p>
+    <ul>
+        <li>normal : 브라우저에서 url 입력으로 웹사이트를 들어간 모습</li>
+        <li>standalone : url 주소창이 없어진 모습. 네이티브 앱 같은 느낌</li>
+        <li>fullscreen : 모바일의 상태바까지 없어진 모습(크롬이 아닌 기타 브라우저에서 네이티브 앱 느낌 제공)</li>
+        <li>minimul-ui : fullscreen과 비슷하나 네이게이션 관련 최소 UI를 제공</li>
+    </ul>
+    <div class="summary">
+        <p class="caption">IOS에서 standalone 사용시 주의사항</p>
+        &lt;a&gt;를 사용한 네이게이션 이동시 새 브라우저 열기로 인해 context를 잃게 된다<span></span>따라서, location.href 또는 SPA를 이용한 네이게이팅을 전체 UX를 가져갈 필요가 있다(라우팅 등으로)<span></span>IOS에서 전체화면이 가능하게 하려면 아래 메타 태그 추가
+    </div>
+    <code>
+    &lt;<span class="out">meta</span> name='apple-mobile-web-app-capable" content='yes'&gt;
+    </code>
+
+    <p class="art_title">웹앱 매니페스트 테마색, 화면 방향</p>
+    <p class="art_sub_title">theme color</p>
+    <p>앱 테마 색상을 정의하는 속성</p>
+    <code>
+    &lt;<span class="out">meta</span> name='theme-color' content='#4285f4'&gt;
+    </code>
+    <p>위 코드처럼 메타속성으로 정해줬던 속성이 manifest 파일로 들어간 것 (툴바 색상 영역)</p>
+    <p class="art_sub_title">display orientation</p>
+    <p>화면 방향 (세로 portrait, 가로 landscape)</p>
+
+    <p class="art_title">웹앱 매니페스트 인스톨 배너 소개, 조건</p>
+    <p>PWA가 모바일적인 특징을 갖는 큰 부분 중 하나<span></span>웹 사이트에 접속했을 때 앱을 바로 설치할 수 있는 배너가 표시된다</p>
+    <p class="art_sub_title">기존 모바일 앱 개발주기 & PWA 앱 개발주기</p>
+    <ul>
+        <li>기존 모바일 앱 : [개발자] 구현 > SDK 빌드 > 스토어 배포 > [사용자] 검색 > 앱 다운로드 > 설치 > 사용</li>
+        <li>PWA 앱 : [개발자] 구현 > 사이트 배포 > [사용자] 검색 > 사용(자동설치)</li>
+    </ul>
+    <p class="art_sub_title">Install Banner 동작 조건</p>
+    <ul>
+        <li>모바일에 웹 사이트가 설치되어 있지 않음</li>
+        <li>사용자가 최소 30초 이상 웹 사이트 탐색</li>
+        <li>start_url, short_name, name 설정</li>
+        <li>최소 192px 크기의 앱 아이콘 이미지</li>
+        <li>Service Worker의 fetch 이벤트 구현</li>
+        <li>HTTPS</li>
+    </ul>
+
+    <p class="art_title">웹앱 매니페스트 인스톨 배너 디버깅, 사용자 조사 우회 방법</p>
+    <p>브라우저가 자동으로 인스톨 배너를 띄워주고 있는데 이것의 변형 버전</p>
+    <p class="caption">beforeinstallprompt 로 설치 배너의 표시 시기를 지연하거나 disable하는 기능</p>
+    <code>
+    <span class="variable">let</span> deferredPrompt;
+    <span class="comment">// 설치 가능한지 확인</span>
+    window.addEventListener('beforeinstallpropmt', <span class="function">function</span>(e){
+        console.log('beforeinstallprompt Event fired);
+        e.preventDefault();
+        deferredPrompt = e;
+    });
+
+    <span class="comment">// 특정 버튼 클릭시 앱 설치 배너 표시</span>
+    btn.addEventListener('click', <span class="function">function</span>(e){
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(<span class="function">function</span>(result){
+        if(result === 'accepted'){
+            console.log(''The app has been installed);
+        }
+        deferredPrompt = null;
+        });
+    });
+    </code>
+    <p class="art_sub_title">Install Benner 디버깅</p>
+    <p><span class="caption block">[개발자도구 > Application 패널] 이외의 디버깅 방법</span>주소창에 chrome://flags 입력<span></span>Bypass user engagement checks(사용자 참여 검사 우회) 에 enabeld 체크 돼있어야 브라우저에서 인스톨 배너가 표시되는지 확인 가능<span></span>[개발자도구 > Application] 에서 'Add to homescreen'을 사용해 앱 아이콘 설치를 테스트 해볼 수 있다</p>
+</article>
+</div>

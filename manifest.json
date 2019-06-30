@@ -1,16 +1,16 @@
 {
-    "short_name" : "Marvel Studio",
-    "name" : "pwa offline web",
+    "short_name" : "Note",
+    "name" : "ES's development note",
     "icons" : [
         {
-            "src" : "images/icons/192x.png",
+            "src" : "images/airplane_192x.png",
             "type" : "images/png",
-            "sizes" : "192x192"
+            "sizes" : "192x162"
         },
         {
-            "src" : "images/icons/512x.png",
+            "src" : "images/airplane_345.png",
             "type" : "images/png",
-            "sizes" : "512x512"
+            "sizes" : "345x292"
         }
     ],
     "background_color" : "#fdfdfd",

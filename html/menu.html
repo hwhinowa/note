@@ -1,13 +1,14 @@
 <h1>NOTE</h1>
+<button onclick='toggle_class($(".menu"), "active", false)' class='mobile_close'></button>
 <div class="category active">
-    <button onclick='toggle_class(this, "active")' class="title">Javascript</button>
+    <button onclick='toggle_class(this, "active", true)' class="title">Javascript</button>
     <button onclick='goTo("js_1")'>기본형데이터와 참조형데이터</button>
     <button onclick='goTo("js_2")'>함수</button>
     <button onclick='goTo("js_3")'>this</button>
     <button onclick='goTo("js_4")'>closure</button>
 </div>
 <div class="category">
-    <button onclick='toggle_class(this, "active")' class="title">React</button>
+    <button onclick='toggle_class(this, "active", true)' class="title">React</button>
     <button onclick='goTo("react_1")'>React</button>
     <button onclick='goTo("react_2")'>props, state</button>
     <button onclick='goTo("react_3")'>JSX</button>
@@ -19,13 +20,13 @@
     <button onclick='goTo("react_9")'>Redux</button>
 </div>
 <div class="category">
-    <button onclick='toggle_class(this, "active")' class="title">PWA</button>
+    <button onclick='toggle_class(this, "active", true)' class="title">PWA</button>
     <button onclick='goTo("pwa_1")'>PWA</button>
     <button onclick='goTo("pwa_2")'>웹앱 매니페스트</button>
     <button onclick='goTo("pwa_3")'>서비스워커</button>
 </div>
 <div class="category">
-    <button onclick='toggle_class(this, "active")' class="title">SVG</button>
+    <button onclick='toggle_class(this, "active", true)' class="title">SVG</button>
     <button>SVG</button>
     <button>웹에서 SVG 사용법</button>
     <button>SVG Basic</button>

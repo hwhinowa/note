@@ -49,7 +49,8 @@ const $=(selector)=>{
 
 // 컨텐츠 뷰어 함수
 const goTo=(page)=>{
-    let $box = $('.contents'),
+    let $menu = $('.menu'),
+        $box = $('.contents'),
         $prev_con = $('.contents > div'),
         div = document.createElement('div');
         
@@ -57,12 +58,16 @@ const goTo=(page)=>{
     if($prev_con) $prev_con.remove();
     if($box) $box.appendChild(div);
 
+    if($menu.classList.contains('active')){
+        $menu.classList.remove('active');
+    }
+
     includeHTML();
 }
 
-// class 토글 함수
-const toggle_class=(btn, name)=>{
-    let elem = btn.parentNode;
+// class 토글 함수 (부모 객체)
+const toggle_class=(node, name, isParent)=>{
+    let elem = isParent ? node.parentNode : node;
     if(elem && elem.classList){
         if(elem.classList.contains(name)){
             elem.classList.remove(name);

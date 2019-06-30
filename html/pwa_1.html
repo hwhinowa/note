@@ -1,0 +1,56 @@
+<div class="con_top">
+    <p>Javascript</p>
+    <p class='con_title'>PWA</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">PWA</p>
+    <p class="art_sub_title">PWA란</p>
+    <p>
+        모바일 앱과 같은 경험을 주는 최신 웹 앱<span></span>기존 웹앱과 다른 점 : 앱 아이콘, 앱 아이콘 설치 배너, 모바일 푸시, 오프라인 경험 제공<span></span>구현 방식 : HTML, CSS, JS
+    </p>
+    <p class="summary">
+        <span class="caption block">'높은 사용자 경험을 제공하기 위한 웹 앱'</span>(앱 설치 배너 표시, 기존 모바일 앱과 같이 앱으로 웹 페이지 실행 가능, 웹 페이지 구동시 상단 url 바가 없어 기존 모바일 앱을 구동시킨 것과 똑같이 보임)
+    </p>
+
+    <p class="art_title">PWA 등장 배경</p>
+    <ul class='pd_t'>
+        <li>모바일 시장의 폭발적인 성장 (2000년대 중반부터 스마트폰이 출시되면서 pc보다 모바일을 많이 사용하게 된다)</li>
+        <li>모바일 웹보다도 모바일 앱을 많이 사용 (모바일 앱을 아이콘 터치 한번 만으로 서비스 사용이 가능하기 때문에)</li>
+        <li>모바일 앱 영역을 커버하기 위한 시도들 - Hybrid App, React Native (웹 기술로 모바일 앱을 만드는 일종의 프레임 워크들)<span></span>하지만 결국에는 다른 어떤 도구가 더 필요하게 되고, 이러한 한계점들을 벗어나서 순전히 웹 기술로 모바일 앱을 만들기 위해 PWA가 나오게 되었다</li>
+        <li>Offline Web의 필요성 - 우리나라의 경우 인프라가 잘 되어있어 필요성이 조금 떨어지지만, 인터넷이 연결되지 않았을 때 웹 사이트에 접근할 수 있게 해주는 사용자 경험이 필요해서 PWA가 등장했다</li>
+    </ul>
+
+    <p class="art_title">PWA 특징</p>
+    <p class="art_sub_title">Responsive</p>
+    <p>반응형 웹 디자인<span></span>단말기가 많아지면서 어떤 디바이스에서도 디자인이 깨지지 않도록 하는 디자인</p>
+    <p class="art_sub_title">App-like & Discoverable</p>
+    <p>모바일기기로 웹 페이지에 들어가면 앱 설치 배너가 표시된다 (App-like)<span></span>앱 스토어에 접속 후 검색해서 앱을 설치하는 게 아니라, 웹 페이지에 들어가서 앱을 설치하고 앱 아이콘을 클릭하기만 하면 바로 접속 가능 (Discoverable)</p>
+    <p class="art_sub_title">Engageable</p>
+    <p>PWA으로 push notification을 구현했을 때, pc와 모바일 모두 커버 가능 (*JS로 구현 가능*)</p>
+    <p class="art_sub_title">Connectivity</p>
+    <p>온라인/오프라인 상태에서 웹 페이지가 동일하게 보인다</p>
+    <p class="art_sub_title">Safe</p>
+    <p>PWA의 기본적인 기술이자 제약 사항<span></span>HTTPS 프로토콜을 사용해 웹 사이트를 구축해야 PWA 적용 가능</p>
+    <p class="summary">
+        <span class="caption block">PWA 적용 사례</span>Instagram, Uber, twitter, Starbucks, AliExpress, CNN, 워싱턴포스트, ...<span></span>사용자 경험을 향상시키기 위한 기업들의 목적<span></span>비행기 모드일 때에도 사용 가능
+    </p>
+
+    <p class="art_title">PWA 제작 기술</p>
+    <p class="art_sub_title">manifest.json</p>
+    <p>웹 앱의 구성 정보, 메타 정보를 포함하는 설정 파일</p>
+    <p class="art_sub_title">Service Workers (client-side JavaScript proxy)</p>
+    <p>
+        일반적인 js와 성격이 다른 js<span></span>
+    <span class="feature">
+    단말기 ----- Service worker ----- Web server
+                            |
+                            |
+                        Cache
+    </span>서비스 워커는 화면에서의 데이터 요청을 제어하고 웹 서버에 보내든지,네트워크 요청을 발생시키든지, 캐싱을 해서 화면에 넣어주든지 등의 작업을 한다
+    </p>
+    <div class="highlight">
+        <p class="caption">PWA 지원 브라우저</p>PWA을 구현할 수 있는 지는, OS의 여부가 아니라 브라우저의 종류와 버전에 따라 달라진다<span class='caption block'>Firefox, Opera, Chrome, Samsung Internet, Safari, UC Browser, Baidu Mobile App, 360 Browser, Edge</span>2018년 3월부터 Safari도 지원하며 최신 브라우저들은 대부분 지원
+    </div>
+</article>
+</div>
