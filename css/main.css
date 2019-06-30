@@ -291,6 +291,7 @@ code .out{color:red; display:inline;}
         right: -50%;
         overflow-y:scroll;
         width: 50%;
+        padding-bottom:6rem;
         background: #fff;
         border-right: solid 1px #efefef;
         -ms-overflow-style:none;
