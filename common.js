@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 // HTML Include
-function includeHTML() {
+const includeHTML=()=>{
     var z, i, elmnt, file, xhttp;
     /* Loop through a collection of all HTML elements: */
     z = document.getElementsByTagName("*");
@@ -34,7 +34,7 @@ function includeHTML() {
 }
 
 // 선택자 객체 지정 함수
-function $(selector){
+const $=(selector)=>{
 	let $el = document.querySelectorAll(selector),
 		count = $el.length;
 
@@ -48,7 +48,7 @@ function $(selector){
 };
 
 // 컨텐츠 뷰어 함수
-function goTo(page){
+const goTo=(page)=>{
     let $box = $('.contents'),
         $prev_con = $('.contents > div'),
         div = document.createElement('div');
@@ -68,6 +68,17 @@ const toggle_class=(btn, name)=>{
             elem.classList.remove(name);
         }else{
             elem.classList.add(name);
+        }
+    }
+}
+
+const show_box=(box_name)=>{
+    let $box = $('.'+box_name+'_box');
+    if($box && $box.classList){
+        if($box.classList.contains('active')){
+            $box.classList.remove('active');
+        }else{
+            $box.classList.add('active');
         }
     }
 }

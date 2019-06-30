@@ -1,0 +1,37 @@
+<div class="con_top">
+    <p>React</p>
+    <p class='con_title'>Component 생성 - class, const</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">Component</p>
+    <p>
+        Component에서 LifeCycle API를 사용해야 하거나, state를 사용하는 경우는 반드시 class 문법을 사용하여 component를 정의해야 한다<span></span>React.createClass(...) 를 사용하는 방법도 있지만 요즘 잘 사용되지 않는 추세<span></span>하지만 생성할 component가 그냥 props만 전달받아 뷰를 렌더링해주는 역할이라면 함수형 component 형식으로 정의하는 게 간단하다
+    </p>
+    <code>
+    <span class="comment">// 1. general function</span>
+    import React from 'react';
+    
+    function Hello(props){
+        return(
+        &lt;div&gt;Hello {props.name}&lt;/div&gt;
+        );
+    }
+    
+    export default Hello;
+    </code>
+    <code>
+    <span class="comment">// 2. arrow function</span>
+    import React from 'react';
+    
+    const Hello = ({name} => {
+        return(
+        &lt;div&gt;Hello {name}&lt;/div&gt;
+        )
+    });
+    
+    export default Hello;
+    </code>
+    <p class="highlight">함수형 component는 state와 LifeCycle이 빠져있고, class형 component에 비해 첫 마운팅 속도가 7% ~ 11% 빠르다</p>
+</article>
+</div>

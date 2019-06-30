@@ -1,0 +1,25 @@
+<div class="con_top">
+    <p>React</p>
+    <p class='con_title'>SPA와 라우팅</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">SPA</p>
+    <p class="art_sub_title">전통적인 웹어플리케이션의 구조</p>
+    <p>여러 페이지로 구성되어있고, 유저가 요청할 때마다 페이지가 새로고침, 페이지를 로딩할 때마다 서버로부터 리소스를 전달받아 해석 후 렌더링한다</p>    
+    <p class="summary light">
+        <span class="caption block">기존 웹 페이지의 단점</span>제공되는 정보가 많은 웹 페이지의 경우 속도 문제<span></span>속도 문제를 해결하기 위해 캐싱과 압축을 하여 서비스를 제공하는 것은 사용자와 인터렉션이 많은 모던 웹앱에 부적합하다<span></span>서버사이드 렌더링은 그만큼 서버 자원이 사용되는 것이고 불필요한 트래픽도 낭비된다는 단점이 있다
+    </p>
+
+    <p class="art_sub_title">SPA</p>
+    <p>뷰 렌더링을 유저의 브라우저가 담당하게 하고, 우선 어플리케잉션을 브라우저에 로드한 후 정말 필요한 데이터만 전달받아 보여준다</p>
+
+    <p class="art_sub_title">SPA의 단점</p>
+    <p>앱의 규모가 커지면 javascript 파일 사이즈가 너무 커진다 (유저가 실제로 방문하지 않을 수도 있는 페이지에 관련된 렌더링이 포함된 스크립트도 불러오기 때문)<span></span>Code Splitting을 사용해 라우트 별로 파일들을 나눠 트래픽과 로딩속도를 개선할 수 있다</p>
+
+    <p class="art_sub_title">라우팅 (Routing)</p>
+    <p>
+        다른 주소에 따라 다른 뷰를 보여주는 것<span></span>react-router 는 써드파티 라이브러리로 페이스북 공식은 아니지만 가장 많이 사용되는 라이브러리. 클라이언트 사이드에서 이뤄지는 라우팅을 간단하게 해준다
+    </p>
+</article>
+</div>

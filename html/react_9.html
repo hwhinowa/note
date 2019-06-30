@@ -1,0 +1,21 @@
+<div class="con_top">
+    <p>React</p>
+    <p class='con_title'>Redux</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">Redux의 세 가지 원칙</p>
+    <p class="art_sub_title">하나의 애플리케이션 안에는 하나의 store가 있어야 한다</p>
+    <p>특정 업데이트가 너무 빈번하게 일어나거나, 애플리케이션의 특정 부분을 완전히 분리하게 될 때 여러 개의 store를 만들 수 있다<span></span>하지만, 이렇게 하면 개발 도구를 활용하지 못한다</p>
+
+    <p class="art_sub_title">상태는 읽기 전용</p>
+    <p>
+        React에서 state를 업데이트 할 때 setState를 사용하고, 배열을 업데이트해야 할 때 배열 자체에 push를 직접 하지 않고 concat과 같은 함수를 사용해 기존 배열을 수정된 새로운 배열과 교체하는 방식으로 업데이트한다<span></span>아주 깊은 구조로 되어있는 객체를 업데이트할 때에도 기존의 객체는 건드리지 않고 Object.assign을 사용하거나 spread 연산자(...)를 사용해 업데이트한다<span></span>Redux에서 불변성을 유지해야 하는 이유는, 내부적으로 데이터가 변경되는 것을 감지하기 위해 shallow equality 검사를 하기 때문이다<span></span>객체의 변화를 감지할 때 객체의 깊숙한 안쪽까지 비교하는 것이 아니라 겉핥기 식으로 비교를 하여 좋은 성능을 유지할 수 있는 것
+    </p>
+
+    <p class="art_sub_title">변화를 일으키는 함수, reducer는 순수(pure) 함수로 이뤄져야 한다</p>
+    <p>
+        동일한 input이라면 동일한 output이 있어야 한다<span></span>(실행할 때마다 같은 값을 반환해야 함. 랜덤 함수 X)<span></span>랜덤 숫자를 생성하거나 new Date()를 사용하거나 네트워크에 요청하는 등의 경우는 reducer 함수 바깥에서 처리해줘야 한다<span></span>이런 작업들을 하기 위해 Redux middleware를 사용한다
+    </p>
+</article>
+</div>

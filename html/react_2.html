@@ -1,0 +1,46 @@
+<div class="con_top">
+    <p>React</p>
+    <p class='con_title'>props, state</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">Props와 State</p>
+    <p>React Component에서 다루는 데이터는 props와 state 두 가지</p>
+    <p class="art_sub_title">Props</p>
+    <p>
+        부모 Component가 자식 Component에서 주는 값<span></span>이 때 자식 Component는 값을 받아오기만 할 뿐, 받아온 props 를 직접 수정할 수는 없음<span></span>부모 Component에서 props를 전달해주면 자식 Component는 [ this.[propsName] ]으로 접근할 수 있다
+    </p>
+    <code>
+    <span class='comment'>// 부모 Comp</span>
+    &lt;ChildComponent
+        name="이름"
+    /&gt;
+    </code>
+    <code>
+    <span class='comment'>// 자식 Comp</span>
+    <span class='variable'>let</span> varialble1 = this.props.name;
+    console.log(variable1); <span class='comment'>// 이름</span>
+    </code>
+
+    <p class="art_sub_title">defaultProps</p>
+    <p>
+        props가 빈 값이어야 하는 경우나, 실수로 빼먹어서 오류가 날 수도 있기 때문에 props의 기본값을 설정함<span></span>
+        Component class 선언 내부에서
+    </p>
+    <code>
+    <span class='variable'>static</span> defaultProps = {
+        name : '기본 이름'
+    }
+    </code>
+    <p>또는, Component class 선언 외부에서</p>
+    <code>
+    CompName.defaultProps = { <span class='comment'>// CompName에 현재 Component 명</span>
+        name : '기본 이름'
+    }
+    </code>
+    <p class="summary">propType 은 v16부터 deprecated (v15.5까지만 허용됨)</p>
+
+    <p class="art_sub_title">State</p>
+    <p>Component 내부에서 선언하며 내부에서 값을 변경할 수 있으며, 동적인 데이터를 다룬다</p>
+</article>
+</div>

@@ -1,0 +1,174 @@
+<div class="con_top">
+    <p>React</p>
+    <p class='con_title'>Component LifeCycle API</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">컴포넌트 생성</p>
+    <p class="art_sub_title">constructor</p>
+    <p>컴포넌트가 처음 만들어질 때 실행. 기본 state 설정</p>
+    <code>
+    constructor(props) {
+        super(props);
+    }
+    </code>
+
+    <p class="art_sub_title">componentWillMount</p>
+    <p>
+        컴포넌트가 DOM 위에 만들어지기(컴포넌트가 화면에 뿌려지기) 전에 실행됨<span></span>React v16.3에서 이 API가 deprecate 되었다 (v16.3 이후부터 [ UNSAFE_componentWillMount() ] 로 사용됨)
+    </p>
+    <code>
+    componentWillMount() {
+    }
+    </code>
+
+    <p class="art_title">render</p>
+    <p class="art_sub_title">componentDidMount</p>
+    <p>
+        첫 렌더링을 마치고 실행됨. 이 안에서 다른 js 프레임워크 연동 및 setTimeout, setInterval 및 AJAX 사용, DOM 처리 가능<span></span>외부 라이브러리 연동 : D3, masonry, ...<span></span>>컴포넌트에서 필요한 데이터 요청 : Ajax, GraphQL, ...<span></span>>DOM의 속성을 읽거나 직접 변경하는 작업 등을 함
+    </p>
+    <code>
+    componentDidMount() {
+        <span class='comment'>// 외부 라이브러리 연동: D3, masonry, etc
+        // 컴포넌트에서 필요한 데이터 요청: Ajax, GraphQL, etc
+        // DOM 에 관련된 작업: 스크롤 설정, 크기 읽어오기 등</span>
+    }
+    </code>
+
+    <p class="art_title">props 변화</p>
+    <p class="caption">컴포넌트의 update는 props의 변화와 state의 변화에 따라 결정됨</p>
+    <p class="art_sub_title">componentWillReceiveProps</p>
+    <p>
+        새로운 props를 받을 때 실행된다. props에 따라 state를 업데이트할 때 유용하고, 이 안에서 setState 가능하지만 여기서의 setState는 렌더링을 실행하지 않는다<span></span>>this.props 는 아직 바뀌지 않은 상태<san></san>>주로 props에 따라 state가 변해야 하는 로직을 작성한다<span></span>>React v16.3부터 deprecated (v16.3 이후부터 [ UNSAFE_componentWillReceiveProps() ] 로 사용되며, 상황에 따라 새로운 API인 [ getDerivedStateFromProps ] 로 대체될 수 있다)
+    </p>
+    <code>
+    componentWillReceiveProps(nextProps) {
+        <span class='comment'>// this.props 는 아직 바뀌지 않은 상태</span>
+    }
+    </code>
+
+    <p class="art_sub_title">static getDerivedStateFromProps</p>
+    <p>
+        props로 받아온 값을 state로 동기화하는 작업을 해줘야 하는 경우에 사용된다<span></span>여기서는 setState를 하는 게 아니라 특정 props가 바뀔 때 설정하고, 설정하고 싶은 state 값을 리턴하는 형태로 사용한다
+    </p>
+    <code>
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if(nextProps.value !== prevState.value){
+            return {value : nextProps.value};
+        }
+        return null; <span class='comment'>// null을 return하면 따로 업데이트할 것은 없다는 의미</span>
+    }
+    </code>
+
+    <p class="art_title">업데이트 처리</p>
+    <p class="art_sub_title">shouldComponentUpdate</p>
+    <p>
+        props/state가 변경되었을 때 리렌더링을 할지 말지 정함. 필요한 비교를 하고 값을 반환해야 한다<span></span>컴포넌트를 최적화하는 작업에서 유용하게 사용된다<span></span>기본적으로 true를 반환<span></span>따로 로직을 작성해 조건에 따라 false를 반환하면 해당 조건에서는 render 함수를 호출하지 않는다
+    </p>
+    <p class="summary">
+        변화가 발생하는 부분만 업데이트를 해줘서 성능이 향상된다는 점이 React의 강점이지만, 변화가 발생한 부분만 감지해내기 위해서는 Virtual DOM에 한번 그려줘야한다<span></span>부모 컴포넌트가 rerendering되면 자식 컴포넌트도 rendering(render() 함수 호출)된다<span></span>프로젝트가 커지면서 이렇게 낭비되는 CPU 처리량을 줄여주기 위해 shoulComponentUpdate를 작성한다
+    </p>
+    <code>
+    shouldComponentUpdate(nextProps, nextState) {
+        <span class='comment'>// return false 하면 업데이트를 안함
+        // return this.props.checked !== nextProps.checked</span>
+        return true;
+    }
+    </code>
+    <p class="caption">(false시 업데이트 취소)</p>
+
+    <p class="art_sub_title">componentWillUpdate</p>
+    <p>
+        컴포넌트가 업데이트되기 전에 실행. setState 사용 금지<span></span>이 API는 shoulComponentUpdate에서 true를 반환했을 때에만 호출된다<span></span>주로 애니메이션 효과를 초기화하거나, event listener를 없애는 작업을 한다<span></span>이 함수가 호출되고 나면 render() 함수가 호출된다<span></span>React v16.3 이후 deprecated (v16.3 이후에서 [ getSnapshotBeforeUpdate ] 로 대체)
+    </p>
+
+    <p class="art_sub_title">getSnapshotBeforeUpdate</p>
+    <p>
+        DOM 변화가 일어나기 직전의 DOM 상태를 가져온다<span></span>여기서 리턴하는 값은 componentDidUpdate에서 3번째 parameter로 받아올 수 있다
+    </p>
+    <p class="caption">이 API가 발생하는 시점</p>
+    <ol>
+        <li>render()</li>
+        <li class='caption'>getSnapshotBeforeUpdate() [ 여기서 발생 ]</li>
+        <li>실제 DOM의 변화 발생</li>
+        <li>componentDidUpdate</li>
+    </ol>
+    <code>
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        <span class='comment'>// DOM 업데이트가 일어나기 직전의 시점입니다.
+        // 새 데이터가 상단에 추가되어도 스크롤바를 유지해보겠습니다.
+        // scrollHeight 는 전 후를 비교해서 스크롤 위치를 설정하기 위함이고,
+        // scrollTop 은, 이 기능이 크롬에 이미 구현이 되어있는데, 
+        // 이미 구현이 되어있다면 처리하지 않도록 하기 위함입니다.</span>
+        if (prevState.array !== this.state.array) {
+            <span class='variable'>const</span> {
+                scrollTop, scrollHeight
+            } = this.list;
+            <span class='comment'>// 여기서 반환 하는 값은 componentDidMount 에서 snapshot 값으로 받아올 수 있습니다.</span>
+            return {
+                scrollTop, scrollHeight
+            };
+        }
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (snapshot) {
+            <span class='variable'>const</span> { scrollTop } = this.list;
+            if (scrollTop !== snapshot.scrollTop) return; <span class='comment'>// 기능이 이미 구현되어있다면 처리하지 않습니다</span>
+            <span class='variable'>const</span> diff = this.list.scrollHeight - snapshot.scrollHeight;
+            this.list.scrollTop += diff;
+        }
+    }
+    </code>
+
+    <p class="art_title">rerender</p>
+    <p class="art_sub_title">componentDidUpdate</p>
+    <p>
+        컴포넌트가 리렌더링을 마친 후 실행. this.props와 this.props가 이미 업데이트되어 변경된 상태. setState 사용 금지<span></span>>parameter를 통해 이전의 값인 prevProps와 prevState 조회 가능
+    </p>
+    <code>
+    componentDidUpdate(prevProps, prevState, snapshot) {
+    }
+    </code>
+
+    <p class="art_title">컴포넌트 제거</p>
+    <p class="art_sub_title">componentWillUnmount</p>
+    <p>
+        컴포넌트가 DOM에서 사라진 후 실행<span></span>>주로 등록했던 event를 제거하고, 만약에 setTimeout한 게 있다면 clearTimeout으로 제거, 외부 라이브러리를 사용한게 있고 해당 라이브러리에 dispose 기능이 있다면 여기서 호출
+    </p>
+    <code>
+    componentWillUnmount() {
+        <span class='comment'>// 이벤트, setTimeout, 외부 라이브러리 인스턴스 제거</span>
+    }
+    </code>
+    <p class="summary">state 변화시shouldComponentUpdate 단계에서 바로 업데이트 실행</p>
+
+    <p class="art_sub_title">componentDidCatch</p>
+    <p>
+        render() 함수에서 에러가 발생하면 React App이 crash되는데 이런 상황에 유용한 API<span></span>에러가 발생하면 componentDidCatch가 실행되게 하고, state.error를 true로 설정하고, render 함수 쪽에서 이에 따라 에러를 띄워주면 crash되지 않고 표시한 메시지가 뜬다
+    </p>
+    <p class="summary">컴포넌트 자신의 render 함수에서 에러가 발생한 것은 잡아낼 수 없지만, 자식 컴포넌트 내부에서 발생하는 에러를 잡아낼 수 있다</p>
+    <code>
+    componentDidCatch(error, info) {
+        this.setState({
+            error: true
+        });
+    }
+    </code>
+    <p>보통 렌더링 부분에서 오류가 발생하는 것은 사전에 방지해주어야 한다</p>
+    <div class="highlight">
+        <p>주로 에러가 발생하는 이유는</p>
+        <ol class='caption'>
+            <li>존재하지 않는 함수를 호출하려고 할 때 (예를들어서 props 로 받았을줄 알았던 함수가 전달되지 않았을때)</li>
+            <li>배열이나 객체가 올 줄 알았는데, 해당 객체나 배열이 존재하지 않을때</li>
+        </ol>
+        <p>2번과 같은 경우는 보통 아래와 같은 형식으로 막아준다</p>
+    <code>
+    render() {
+        if (!this.props.object || !this.props.array || this.props.array.length ===0) return null;
+        <span class='comment'>// object 나 array 를 사용하는 코드</span>
+    }
+    </code>
+        <p>또는, 컴포넌트의 기본값을 설정하는 defaultProps를 설정</p>
+    </div>
+</article>
+</div>

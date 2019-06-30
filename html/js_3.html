@@ -1,0 +1,109 @@
+<div class="con_top">
+    <p>Javascript</p>
+    <p class='con_title'>this</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">this</p>
+    <p class="art_sub_title">this</p>
+    <p><span class="caption">전역 공간에서의 this</span> : window/global (전역 객체)</p>
+    <p><span class="caption">함수 내부에서의 this</span> : window/global (전역 객체. default값)</p>
+    <p><span class="caption">메소드 호출 시의 this</span> : 메소드 호출 주체 (메소드명 바로 앞)</p>
+    <code>
+    <span class='variable'>var</span> a = {
+        b : <span class="function">function</span>(){
+            console.log(this);
+        }
+    }
+    a.b(); <span class='comment'>// {b:function()..}  a 객체가 출력됨</span>
+    </code>
+    <p class="summary">함수를 (전역 객체의) 메소드라고 생각하면 편하다</p>
+    
+    <p class="art_sub_title">내부함수에서의 우회법</p>
+    <p>메소드 안에 내부 함수가 있는 경우</p>
+    <code>
+    <span class='variable'>var</span> a = 10;
+    <span class='variable'>var</span> obj = {
+        a : 20,
+        b : <span class="function">function</span>(){
+        console.log(this.a); <span class='comment'>// 20 출력. 여기서는 b가 obj의 메서드이기 때문에 obj가 this</span>
+        <span class="function">function</span> c(){
+            console.log(this.a); <span class='comment'>// 10 출력. 여기서는 c가 그냥 함수이기 때문에 this는 전역 객체.
+                                    스코프체인을 사용해 this가 obj를 바라볼 수 있도록 우회할 수 있음 (아래 참고)</span>
+        }
+        c();
+        }
+    }
+    obj.b();
+    </code>
+    <p class="caption">스코프체인 우회</p>
+    <code>
+    <span class='variable'>var</span> a = 10;
+    <span class='variable'>var</span> obj = {
+        a : 20,
+        b : <span class="function">function</span>(){
+        <span class='variable'>var</span> self = this; <span class='comment'>// this를 변수에 담고</span>
+        console.log(this.a);
+    
+        <span class="function">function</span> c(){
+            console.log(self.a); <span class='comment'>// 이렇게 사용하면 obj의 a를 출력함</span>
+        }
+        c();
+        }
+    }
+    </code>
+    <p class="art_sub_title">callback에서의 this</p>
+    <p>기본적으로는 함수 내부에서와 동일하나, call, apply, bind 메소드를 이용해 this를 지정할 수 있음</p>
+    <code>
+    <span class="function">function</span> a(x, y, z){
+        console.log(this, x, y, z);
+    }
+    <span class='variable'>var</span> b = {
+    c : 'eee'
+    };
+    
+    a.call(b, 1, 2, 3);
+    a.apply(b. [1, 2, 3]);
+    
+    <span class='variable'>var</span> c = a.bind(b);
+    c(1, 2, 3);
+
+    <span class='variable'>var</span> d = a.bind(b, 1, 2);
+    d(3);
+    </code>
+    <p>
+        func.call(thisArg[, arg1[, arg2[, ...]]])<span></span>
+        func.apply(thisArg, [argsArray])<span></span>
+        func.bind(thisArg[, arg1[, arg2[, ...]]])
+    </p>
+    <p class="summary">
+        call과 apply의 차이는 this로 지정할 객체 뒤에 인자들을 쭉 나열할 것인지, 배열 하나에 나열할 것인지이다<span></span>
+        call과 apply는 즉시 호출하고, bind는 새로운 함수를 생성한다
+    </p>
+    <code>
+    <span class='variable'>var</span> callback = <span class="function">function</span>(){
+        console.dir(this); <span class='comment'>// window 전역 객체</span>
+    };
+    <span class='variable'>var</span> obj = {
+    a : 1,
+    b : <span class="function">function</span>(cb){
+        cb();
+    }
+    };
+    obj.b(callback);
+    </code>
+    <p class="highlight">
+        콜백함수에서의 this는 기본적으로 함수의 this와 같다<span></span>제어권을 가진 함수가 callback의 this를 명시한 경우 그에 따르고, this를 바인딩 한 채로 callback을 넘긴 경우 그에 따른다
+    </p>
+
+    <p><span class="caption">생성자 함수에서의 this</span> : 인스턴스</p>
+    <code>
+    <span class="function">function</span> Person(n, a){
+        this.name = n;
+        this.age = a;
+    }
+    <span class='variable'>var</span> gomugom = new Person('고무곰', 30);
+    console.log(gomugon);
+    </code>
+</article>
+</div>

@@ -1,0 +1,49 @@
+<div class="con_top">
+    <p>React</p>
+    <p class='con_title'>Store</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">Store</p>
+    <p>dispatch : action을 reducer에 보내는 역할</p>
+    <p>reducer는 store의 현재 상태와 action을 전달받음 -> reducer가 어떠한 변화를 주면 store에 새로운 상태를 덮어씌움</p>
+    <p>getState() - 현재 상태를 반환</p>
+    <p>subscribe(listener) - 상태가 바뀔 때마다 실행할 함수를 정의함. listener가 콜백 함수</p>
+
+    <p class="art_title">REACT-REDUX</p>
+    <p><span class="caption block">Redux</span>application의 상태를 관리</p>
+    <p><span class="caption block">Webpack</span>module bundler. 각종 loader와 plugin을 통해 프로젝트를 빌드</p>
+    <p><span class="caption block">Provider</span>react-redux를 사용할 수 있게 해주고 컴포넌트의 형태로 사용</p>
+    <p><span class="caption block">connect([...options]) 함수</span>option을 받아서 컴포넌트를 reduc에 연결하는 "또 다른" 함수를 반환</p>
+    <div class="summary">
+        <ol>
+            <li><span class="caption block">mapStateToProps</span>state를 인자로 받고 props로 변환</li>
+            <li><span class="caption block">mapDispatchToProps</span>dispatch를 인자로 받고 dispatch한 함수를 props로 연결</li>
+            <li><span class="caption block">mergeProps</span>state와 dispatch를 함께 사용해야 할 때</li>
+            <li><span class="caption block">options</span>{[pure=true],[withRef=false]} 가 default인 객체 형태 ([pure=true] 불필요한 업데이트를 하지 않음)</li>
+        </ol>
+    </div>
+    <div class="summary">
+        <span class="caption block">ex) connect([...options])(Counter)</span>Counter의 새로운 컴포넌트 클래스가 반환되며, 이 새로운 컴포넌트는 redux에 연결되어있다<span></span>option이 없으면 컴포넌트 내부에서 this.props.store로 접근 가능
+        <span class="caption block">ex) connect()(Counter)</span>Counter 컴포넌트가 새로운 함수를 반환하고 그 함수의 인자로 Counter 컴포넌트를 넘겨준다
+    </div>
+    <p class="highlight">여기서의 state는 단지 parameter name. 컴포넌트의 state와는 무관하다</p>
+    <code>
+    <span class="variable">const</span> mapStatetoProps = (state) =>{
+        return {
+            propsName : state.reducerName.actionType
+            <span class='comment'>// propsName을 현재 컴포넌트에서 this.props.propsName 으로 사용 가능</span>
+        };
+    }
+    
+    <span class="variable">const</span> mapDispatchToProps = (dispatch) =>{
+        <span class='comment'>// return에서 action을 dispatch하는 함수를 props로 연결해준다</span>
+        return {
+            propsName : ([parameter])=>{dispatch(actions.actionType([parameter]))}
+            <span class='comment'>// 생성된 action을 dispatch</span>
+            <span class='comment'>// propsName을 실행하면 dispatch 함수가 작동</span>
+        };
+    }
+    </code>
+</article>
+</div>

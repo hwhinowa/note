@@ -1,0 +1,103 @@
+<div class="con_top">
+    <p>React</p>
+    <p class='con_title'>JSX</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">style과 className, 주석</p>
+    <p class="art_sub_title">style</p>
+    <p>JSX 에서 style을 지정하는 방법은 css 에서와 달리 객체 형태로 작성해야 한다</p>
+    <code>
+    <span class='variable'>const</span> style = {
+        backgroundColor : 'black',
+        padding: '16px',
+        .
+        .
+    }
+
+    return(
+        &lt;div style={style}&gt;
+            [ contents ]
+        &lt;/div&gt;
+    );
+    </code>
+    <p>style 속성명은 camelCase, value는 string 형태</p>
+
+    <p class="art_sub_title">className</p>
+    <p>React Component 에 class명을 지정할 때, class 대신 className 사용</p>
+
+    <p class="art_sub_title">comment</p>
+    <p>{/*  ...  */}<span></span>또는<span></span>태그 사이에 // . . .</p>
+
+    <p class="art_title">조건부 렌더링</p>
+    <p>보통 삼항 연산자나 AND 연산자 사용<span></span>JSX 문법 안에서는 if문 대신 IIFE(Immediately Invoked Function Expression, 즉시 실행 함수 표현) 을 사용해야 한다</p>
+    <p class="art_sub_title">[ 삼항연산자 ] ? [ true인 경우 실행 ] : [ false인 경우 실행 ]</p>
+    <code>
+    {
+        1 + 1 === 2
+            ? (&lt;div&gt;맞아요&lt;/div&gt;)
+            : (&lt;div&gt;틀려요&lt;/div&gt;)
+    }
+    </code>
+
+    <p class="art_sub_title">AND 연산자</p>
+    <p>true 인 경우만 보여줄 때 사용</p>
+    <code>
+    {
+        1 + 1 === 2 && (&lt;div&gt;맞아요&lt;/div&gt;)
+    }
+    </code>
+    <p class="summary">
+        위 두가지보다 복잡한 조건을 작성해야 한다면 JSX 밖에서 로직을 작성하는 게 좋다<span></span>JSX 안에서는 반드시 IIFE 사용!
+    </p>
+
+    <p class="art_sub_title">switch문</p>
+    <code>
+    {
+        (<span class="function">function</span>{
+            if(value === 1) return (&lt;div&gt;하나&lt;/div&gt;);
+            if(value === 2) return (&lt;div&gt;둘&lt;/div&gt;);
+            if(value === 3) return (&lt;div&gt;셋&lt;/div&gt;);
+        })
+    }
+    </code>
+    <div class="summary">
+        <p class="caption">IIFE</p>
+        <p>정의되자마자 즉시 실행되는 Javascript Function<span></span>Self-Executing Anonymous Function 으로 알려진 디자인 패턴이며 크게 두 부분으로 구성<span></span>괄호( () )로 둘러싸인 익명함수</p>
+    <code>
+    (<span class="function">function</span>(){
+        [my code]
+    })();
+    </code>
+        <p>즉시 실행 함수를 생성하는 괄호( () )를 통해 Javascript 엔진은 함수를 즉시 해석하여 실행한다<span></span>표현식 내부의 변수는 외부로부터의 접근이 불가하다<span></span>IIFE를 변수에 할당하더라도 표현식 자체는 저장되지 않고, 함수 실행 결과만 저장된다(즉시 실행되기 때문에)</p>
+    </div>
+
+    <div class="highlight">
+        <p>
+            <span class="caption block">ES6부터 변수명을 선언할 때 사용하는 const와 let 추가</span>
+            <span class="caption block">const</span>한번 선언하고 바뀌지 않는 값을 설정할 때 사용
+            <span class="caption block">let</span>유동적인 변수 선언시 사용
+            <span class="caption block">기존의 var와 다른 점</span>var는 scope가 함수 단위 (하나의 함수 안에서 유효)<span></span>const, let은 scope가 블록 단위 ( {} )
+        </p>
+    </div>
+    <div class="highlight">
+        <p class='caption'>ES6부터 Arrow Function 추가 (화살표 함수라고 부름)</p>
+        <p>이 함수는 this, arguments, super 개념이 없는 익명 함수</p>
+    <code>
+    (() =>{
+        [ myCode ]
+    })()            
+    </code>
+        <p>버튼에서 클릭이벤트 발생시 함수가 실행되는 상황에서</p>
+    <code>
+    myFunction(){
+        [ my code ]
+    }
+    </code>
+        <p>
+            이와 같이 기존 방식처럼 method를 작성하면, 함수가 버튼의 이벤트로 전달되는 과정에서 'this'와의 연결이 끊겨 undefined로 나타날 수 있다<span></span>
+            그렇기 때문에 constructor에서 this.myFunction = this.myFunction.bind(this) 를 추가해 바이딩해주어야 하는데 <span class='caption'>화살표 함수 형태를 사용하면 this가 풀리지 않는다</span>
+        </p>
+    </div>
+</article>
+</div>

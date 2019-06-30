@@ -1,0 +1,150 @@
+<div class="con_top">
+    <p>React</p>
+    <p class='con_title'>setState, spread, event 설정</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">setState</p>
+    <p>
+        setState로 state에 있는 값을 업데이트할 수 있다<span></span>setState가 호출되면 Component가 다시 rendering된다<span></span>setState는 객체로 전달되는 값만 업데이트한다<span></span>하지만, 객체의 깊숙한 곳까지는 확인하지 못하기 때문에 객체의 일부가 바뀌는 경우는, spread(전개 연산자)를 사용하여 기존의 내용을 풀어준 후 새로운 데이터를 덮어씌운다
+    </p>
+    <code>
+    this.setState({
+        (state) => ({
+            number : state.number
+        })
+    });
+    </code>
+    <button onclick='show_box("grammar1")' class="hide_btn">[문법]비구조화 할당</button>
+    <div class="grammar1_box hide_box">
+        <p class='caption'>비구조화 할당 구문은 배열이나 객체의 속성을 해체하여 그 값을 개별 변수에 담을 수 있게 하는 javascript expression(표현식)</p>
+    <code>
+    <span class="variable">var</span> a, b, rest;
+    [a, b] = [10, 20];
+    console.log(a);   // 10
+    console.log(b);   // 20
+    </code>
+    <code>
+    [a, b, ...rest] = [10, 20, 30, 40, 50];
+    console.log(a);   // 10
+    console.log(b);   // 20
+    console.log(c);   // [30, 40, 50]
+    </code>
+    <code>
+    ({a, b} = {a:10, b:20});
+    console.log(a);   // 10
+    console.log(b);   // 20
+    </code>
+    <code>
+    ({a, b, ...rest} = {a:10, b:20, c:30, d:40});
+    console.log(a);   // 10
+    console.log(b);   // 20
+    console.log(rest);   // {c:30, d:40}
+    </code>
+        <p>비구조화 할당은 객체 및 배열 리터럴 식과 비슷한 구문이지만,  할당문의 좌변에 원래 변수에서 어떤 값들을 해체할지 정의한다</p>
+    <code>
+    <span class='comment'>// 배열 리터럴 식</span>
+    <span class="variable">var</span> x = [1, 2, 3, 4, 5];
+    
+    <span class='comment'>// 비구조화 할당</span>
+    <span class="variable">var</span> x = [1, 2, 3, 4, 5];
+    <span class="variable">var</span> [y, z] = x;
+    console.log(y); <span class='comment'>// 1</span>
+    console.log(z); <span class='comment'>// 2</span>
+    </code>
+        <p class="art_sub_title">배열 비구조화</p>
+        <p><span class="caption block">기본값</span>해체된 값이 undefined인 경우에는 변수에 기본값을 할당할 수 있다</p>
+    <code>
+    <span class="variable">var</span> a, b;
+
+    [a = 5, b = 7] = [1];
+    console.log(a); <span class='comment'>// 1</span>
+    console.log(b); <span class='comment'>// 7</span>
+    </code>
+        <p><span class="caption block">변수값 교환하기</span>하나의 비구조화 표현식으로 두 변수의 값을 교환할 수 있다</p>
+    <code>
+    <span class="variable">var</span> a = 1;
+    <span class="variable">var</span> b = 3;
+    
+    [a, b] = [b, a];
+    console.log(a); <span class='comment'>// 3</span>
+    console.log(b); <span class='comment'>// 1</span>
+    </code>
+        <p><span class="caption block">함수에서 반환된 배열 파싱</span>함수가 배열을 반환하는 경우, 비구조화 할당으로 반환된 배열 값을 파싱</p>
+    <code>
+    <span class="function">function</span> f(){
+        return [1, 2];
+    }
+    
+    <span class="variable">var</span> a, b;
+    [a, b] = f();
+    console.log(a); <span class='comment'>// 1</span>
+    console.log(b); <span class='comment'>// 2</span>
+    </code>
+        <p><span class="caption block">일부 반환값 무시하기</span>필요 없는 반환값을 무시할 수 있다</p>
+    <code>
+    <span class="function">function</span> f(){
+        return [1, 2, 3];
+    }
+    
+    <span class="variable">var</span> [a, , b] = f();
+    console.log(a); <span class='comment'>// 1</span>
+    console.log(b); <span class='comment'>// 3</span>
+    </code>
+        <p><span class="caption block">변수에 객체의나머지를 할당하기</span>배열을 비구조화할 경우, rest 패턴을 사용해 해체하고 남은 부분을 하나의 변수에 할당할 수 있다</p>
+    <code>
+    <span class="variable">var</span> [a, ...b] = [1, 2, 3];
+    console.log(a); <span class='comment'>// 1</span>
+    console.log(b); <span class='comment'>// [2, 3]</span>
+    </code>
+        <p>rest 요소 뒤에 콤마(,)가 있으면 SyntaxError 발생</p>
+
+        <p class="art_sub_title">객체 비구조화</p>
+        <p><span class="caption block">기본할당</span>
+    <code>
+    <span class="variable">var</span> o = {p : 42, q : true};
+    <span class="variable">var</span> {p, q} = o;
+    
+    console.log(p); <span class='comment'>// 42</span>
+    console.log(q); <span class="comment">// true</span>
+    </code>
+        <p><span class="caption block">기본값</span>객체로부터 해체된 값이 undefined인 경우, 변수에 기본값을 할당할 수 있다</p>
+    <code>
+    <span class="variable">var</span> {a = 10, b = 5} = {a:3};
+
+    console.log(a); <span class='comment'>// 3</span>
+    console.log(b); <span class='comment'>//5</span>
+    </code>
+        <p><span class="caption block">선언 없는 할당</span>비구조화를 통해 변수의 선언과 분리하여 변수에 값 할당 가능</p>
+    <code>
+    <span class="variable">var</span> a, b;
+    ({a, b} = {a : 1, b : 2});
+    </code>
+        <p>할당문을 감싸고 있는 ( .. )는 선언 없이 객체 리터럴 비구조화 할당을 사용할 때 필요한 구문</p>
+        <p class="summary">
+            cf)<span></span>{a, b} = {a : 1, b : 2} 는 유효한 독립 구문이 아니다<span></span>(좌변의 {a, b}가 객체 리터럴이 아닌 블록으로 간주되기 때문에)<span></span>하지만, ({a, b} = {a : 1, b : 2}); 는 유효하다 (var {a, b} = {a : 1, b : 2}와 같음)
+        </p>
+        <p class="summary">( ..) 표현식 앞에 세미콜론(;)이 있어야 한다. 그렇지 않을 경우 이전 줄과 연결되어 함수 실행에 이용될 수 있다</p>
+        <p><span class="caption block">새로운 변수 이름으로 할당하기</span>객체로부터 속성을 해체하여 객체의 원래 속성명과는 다른 이름의 변수에 할당 가능</p>
+    <code>
+    <span class="variable">var</span> o = {p : 42, q : true};
+    <span class="variable">var</span> {p : foo, q : bar} = o;
+    
+    console.log(foo); <span class='comment'>// 42</span>
+    console.log(bar); <span class='comment'>// true</span>
+    </code>
+        <p><span class="caption block">기본값을 갖는 새로운 이름의 변수에 할당하기</span>새로운 변수명 할당과 기본값 할당을 한번에 할 수 있다</p>
+    <code>
+    <span class="variable">var</span> {a:aa = 10, b:bb = 5} = {a : 3};
+    console.log(aa); <span class='comment'>// 3</span>
+    console.log(bb); <span class='comment'>//5</span>
+    </code>
+    </div>
+
+    <p class="art_title">event 설정</p>
+    <p>event명 설정시 camelCase로 설정(onClick, onMouseDown, onChange, ...)<span></span>event에 전달해주는 값은 함수여야 한다</p>
+    <p class="summary">
+        onClick={this.myFunction()}<span></span>setState를 포함한 함수를 위와 같이 하면 렌더링할 때마다 위 함수가 호출되어 무한loop에 빠진다<span></span>(rendering -> function call -> setState -> rendering -> function call -> ...)
+    </p>
+</article>
+</div>
