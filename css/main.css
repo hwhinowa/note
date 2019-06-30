@@ -263,9 +263,9 @@ code{
     word-break:keep-all;
     white-space:pre-wrap;
 }
-code .comment{color:#008e00;}
-code .variable{color:#47c1f2;}
-code .function{color:#ee47d1;}
+code .comment{color:#008e00; display:inline;}
+code .variable{color:#47c1f2; display:inline;}
+code .function{color:#ee47d1; display:inline;}
 code .out{color:red; display:inline;}
 .con span.feature{
     word-wrap:break-word;
