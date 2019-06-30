@@ -92,10 +92,14 @@ button:focus{outline:none;}
 }
 .mobile_menu{
     display:none;
-    position:absolute;
+    position:fixed;
     top:3.5rem;
     right:2rem;
-    width:5rem;
+    width:6rem;
+    height:6rem;
+    padding:1rem 1rem 0;
+    background:#fff;
+    border:solid 1px #eee;
 }
 .mobile_menu span{
     display:block;
