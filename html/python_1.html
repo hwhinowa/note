@@ -1,0 +1,79 @@
+<div class="con_top">
+    <p>Python</p>
+    <p class='con_title'>작업 환경 설정</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">Anaconda</p>
+    <p>Anaconda 설치시 자동으로 Python도 설치됨<span></span><span class='caption block'>Anaconda : python 프로그래밍에 유용한 툴 패키지</span></p>
+    <p>Anaconda Navigator 를 통해 Jupyter 실행시 python 코드를 작성할 수 있는 노트북 페이지가 나온다</p>
+    <!-- <p><span class='caption block'>install banner & App Icon</span>PWA 설치와 앱 구성정보가 담긴 Json 형식의 설정 파일(앱 아이콘, 화면 런쳐 방식 및 배경색, 시작 페이지 등을 설정)<span></span>PWA 주요 기술 중 하나</p> -->
+    <p class="art_title">Jupyter 사용법</p>
+    <ul>
+        <li><span class="caption">초록색 테두리</span> : 입력모드</li>
+        <li><span class="caption">파란색 테두리</span> : 명령모드</li>
+        <li>esc 키로 [ 명령모드 ] 진입</li>
+        <li>명령모드일 때, 'h' 누르면 단축키 확인</li>
+    </ul>
+    <p class="art_title">Jupyter 단축키</p>
+    <ul>
+        <li><span class="caption">a</span> : 위에 셀 추가</li>
+        <li><span class="caption">b</span> : 아래에 셀 추가</li>
+        <li><span class="caption">d (두 번)</span> : 셀 삭제</li>
+        <li><span class="caption">ctrl + enter</span> : 해당 셀 실행만 하고 아무것도 안함</li>
+        <li><span class="caption">shift + enter</span> : 해당 셀 실행 후 아래 셀로 이동 (아래에 셀이 없다면 셀 생성 후 이동)</li>
+        <!-- <li><span class="caption"></span> : 해당 셀 실행 후 아래에 셀 추가만 (이동 X)</li> -->
+        <li><span class="caption">shift + tab</span> : 함수에 대한 설명 표시</li>
+        <li><span class="caption">m</span> : markdown 타입으로 전환</li>
+        <li><span class="caption">y</span> : code 타입으로 전환</li>
+    </ul>
+    <p class="art_title">셀의 타입</p>
+    <p>셀은 타입이 존재한다</p>
+    <ul>
+        <li><span class="caption">Input 타입 (default)</span> : python 코드를 입력할 수 있는 타입. [] 안의 숫자는 몇 번째 실행인지를 표시해줌</li>
+        <li><span class="caption">Markdown 타입</span> : 문서의 내용과 구조를 한꺼번에 명시할 수 있는 것. 코드에 한 설명을 적어줄 수도 있다</li>
+        <li><span class="caption"># TITLE1</span> : 가장 큰 타이틀 (##, ###, ... # 이 적을수록 큰 타이틀)</li>
+        <li><span class="caption">**특정단어**</span> : 특정단어만 굵게</li>
+        <li><span class="caption">*특정단어*</span> : 특정단어만 기울게</li>
+        <li><span class="caption">-</span> : 비순서형 리스트(들여쓰기 한 칸 할 때마다 depth 추가)</li>
+        <li><span class="caption">#.</span> : 순서형 리스트</li>
+        <li><span class="caption">> 인용구</span> : 인용구</li>
+        <li><span class="caption">$수학식$</span> : 수학식 폰트 적용</li>
+        <li><span class="caption">```python<span></span>코드<span></span>```</span> : 코드로 인식</li>
+        <li><span class="caption">[링크이름] (url)</span> : 링크 이름 바꾸기</li>
+    </ul>
+    <!--<code>
+    {
+        <span class='variable'>"short_name"</span> : "앱 아이콘 이름",
+        <span class='variable'>"name"</span> : "하단 설치 배너에 표기될 이름 & 앱에서 검색시 키워드 & 앱 시작화면에 나올 이름",
+        <span class='variable'>"icons"</span> : [
+            {
+            "src" : "dist/images/icons/icon-32x32.png",
+            "type" : "image/png",
+            "sizes" : "32x32"
+            },
+            {
+            "src" : "dist/images/icons/icon-192x192.png",
+            "type" : "image/png",
+            "sizes" : "192x192"
+            }
+        ],
+        <span class='variable'>"background_color"</span> : "#1E88E5:,
+        <span class='variable'>"start_url"</span> : "./"
+        <span class='variable'>"display"</span> : "standalone",
+        <span class='variable'>"orientation"</span> : "portrait"
+    }
+    </code>
+    <p class="summary">- 앱을 설치할 수 있는 이벤트와 구현 방법<span></span>- Web App Manifest 개발 시 주의할 점(Navigagion Scope. Deep link)</p> -->
+
+    <!-- <div class="summary">
+        <span class="caption">Safari의 경우는 manifest 파일이 인식이 잘 안되기때문에 meta 태그로 추가해줘야 한다</span>
+    <code>
+    &lt;<span class="out">link</span> rel='apple-touch-icon' href=''&gt;
+    &lt;<span class="out">link</span> rel='apple-touch-icon' sizes='152x152' href='name.png'&gt;
+    &lt;<span class="out">link</span> rel='apple-touch-icon' sizes='' href=''&gt;
+    &lt;<span class="out">link</span> rel='apple-touch-icon' sizes='' href=''&gt;
+    </code>
+    </div> -->
+</article>
+</div>
