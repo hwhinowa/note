@@ -1,0 +1,84 @@
+<div class="con_top">
+    <p>Algorithm</p>
+    <p class='con_title'>Algorithm practice</p>
+</div>
+<div class="con">
+<article>
+    <p class="art_title">합 (백준, 8393번, 수학/구현)</p>
+    <p class="art_sub_title">문제</p>
+    <p>n이 주어졌을 때, 1부터 n까지 합을 구하는 프로그램을 작성하시오</p>
+    <p class="art_sub_title">입력</p>
+    <p>첫째 줄에 n (1 ≤ n ≤ 10,000)이 주어진다.</p>
+    <p class="art_sub_title">출력</p>
+    <p>1부터 n까지 합을 출력한다</p>
+
+    <code>
+        <span class='variable'>let</span> input = require('fs').readFileSync('/dev/stdin').toString().split(' ');
+        input *= 1;
+        <span class='comment'>// n이 짝수이면</span>
+        if(Number.isInteger(input/2)) console.log((input + 1) * input / 2); <span class='comment unblock'>// Number.isInteger(#) 해당 숫자값이 정수인지를 반환</span>
+        <span class='comment'>// n이 홀수이면</span>
+        else console.log((input + 1) * Math.floor(input / 2) + Math.ceil(input / 2));
+    </code>
+
+    <p class="highlight">BaekJoon Node.js 입력값 받기</p>
+
+    <p class="summary">
+        1. 하나의 값을 입력받을 때<br>
+        const fs = require('fs');<br>
+        const input = fs.readFileSync("/dev/stdin").toString().trim();<br><br>
+        2. 공백으로 구분된 한 줄의 값들을 입력받을 때<br>
+        const fs = require('fs');<br>
+        const input = fs.readFileSync("/dev/stdin").toString().trim().split(" ");<br><br>
+        3. 여러 줄의 값들을 입력받을 때<br>
+        const fs = require('fs');<br>
+        const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");<br><br>
+        4. 첫 번째 줄에 자연수 n을 입력받고, 그 다음줄에 공백으로 구분된 n개의 값들을 입력받을 때<br>
+        const fs = require('fs');<br>
+        const [n, ...arr] = fs.readFileSync("/dev/stdin").toString().trim().split(/\s/);<br><br>
+        5. 첫 번째 줄에 자연수 n을 입력받고, 그 다음줄부터 n개의 줄에 걸쳐 한 줄에 하나의 값을 입력받을 때<br>
+        const fs = require('fs');<br>
+        const [n, ...arr] = fs.readFileSync("/dev/stdin").toString().trim().split("\n");<br><br>
+        6. 하나의 값 또는 공백으로 구분된 여러 값들을 여러 줄에 걸쳐 뒤죽박죽 섞여서 입력받을 때<br>
+        ex) n 입력 - 공백으로 구분된 n개의 값 입력 - m 입력 - 여러 줄에 걸쳐 m개의 값 입력<br>
+        const fs = require('fs');<br>
+        const input = fs.readFileSync("/dev/stdin").toString().trim().split(/\s/);<br>
+        const n = input[0];<br>
+        const n_arr = input.slice(1, n+1);<br>
+        const [m, ...m_arr] = input.slice(n+1);<br>
+    </p>
+</article>
+
+<article>
+    <p class="art_title">설탕배달 (백준, 2839번, 수학/다이나믹프로그래밍/그리디 알고리즘)</p>
+    <p class="art_sub_title">문제</p>
+    <p>
+        상근이는 요즘 설탕공장에서 설탕을 배달하고 있다. 상근이는 지금 사탕가게에 설탕을 정확하게 N킬로그램을 배달해야 한다. 설탕공장에서 만드는 설탕은 봉지에 담겨져 있다. 봉지는 3킬로그램 봉지와 5킬로그램 봉지가 있다. <br>상근이는 귀찮기 때문에, 최대한 적은 봉지를 들고 가려고 한다. 예를 들어, 18킬로그램 설탕을 배달해야 할 때, 3킬로그램 봉지 6개를 가져가도 되지만, 5킬로그램 3개와 3킬로그램 1개를 배달하면, 더 적은 개수의 봉지를 배달할 수 있다. <br>상근이가 설탕을 정확하게 N킬로그램 배달해야 할 때, 봉지 몇 개를 가져가면 되는지 그 수를 구하는 프로그램을 작성하시오.
+    </p>
+    <p class="art_sub_title">입력</p>
+    <p>첫째 줄에 N이 주어진다. (3 ≤ N ≤ 5000)</p>
+    <p class="art_sub_title">출력</p>
+    <p>상근이가 배달하는 봉지의 최소 개수를 출력한다. 만약, 정확하게 N킬로그램을 만들 수 없다면 -1을 출력한다.</p>
+
+    <code>
+        <span class='variable'>let</span> input = require('fs').readFileSync('/dev/stdin').toString().split(' ');
+        input *= 1;
+
+        <span class='variable'>let</span> result = 0;
+        <span class='variable'>const</span> maxPerFive = Math.floor(input / 5);
+        for(<span class='variable'>let</span> i = 0; i <= maxPerFive; i++){
+            result = input - (maxPerFive - i) * 5;
+
+            if(result % 3 === 0){
+                console.log((maxPerFive - i) + (result / 3));
+                break;
+            }else if(i !== maxPerFive){
+                continue;
+            }else{
+                console.log(-1);
+                return;
+            }
+        }
+    </code>
+</article>
+</div>
