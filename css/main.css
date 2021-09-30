@@ -200,10 +200,22 @@ button:focus{outline:none;}
 .con p, .con li, .summary, .highlight{letter-spacing:-1px;}
 .con article p span, .summary span{display: block;}
 .con p.art_title{
+    position: relative;
     font-size: 2rem;
     font-weight: 900;
     color: #2dc6a8;
     padding-top:3rem;
+}
+.con p.art_title.check:before{
+    display: block;
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: orangered;
+    border-radius: 50%;
 }
 .con p.art_sub_title{
     font-size: 1.8rem;
@@ -218,6 +230,11 @@ button:focus{outline:none;}
     background: #fffbc2;
 }
 .con div.highlight{font-weight:500;}
+.con img{
+    display: block;
+    max-width: 500px;
+    margin: 40px auto;
+}
 .summary{
     font-size: 1.6rem;
     font-weight: 900;
